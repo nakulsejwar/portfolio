@@ -10759,7 +10759,16 @@ button.bg-dark:focus {
 .font-italic {
   font-style: italic !important;
 }
+/* This overrides the Bootstrap blue with your custom purple globally */
+.text-primary {
+    color: var(--accent) !important;
+}
 
+/* Optional: Make the ticks slightly larger and add a glow */
+.ti-check {
+    font-weight: 900;
+    text-shadow: 0 0 5px rgba(105, 90, 166, 0.4);
+}
 .text-white {
   color: #fff !important;
 }
@@ -11595,6 +11604,7 @@ pre .code {
 
 .custom-navbar {
   position: fixed;
+  padding: 20px !important;
   top: 0;
   left: 0;
   width: 100%;
@@ -12233,3 +12243,97 @@ pre .code {
 }
 
 
+
+
+
+:root {
+    --primary-color: #695aa6;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+body {
+    background: #0f0c29; /* Dark deep space background */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* 3D Background Blobs */
+.blob-container {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.blob {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: var(--primary-color);
+    filter: blur(80px);
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: float 20s infinite alternate;
+}
+
+@keyframes float {
+    from { transform: translate(-10%, -10%) rotate(0deg); }
+    to { transform: translate(100%, 80%) rotate(360deg); }
+}
+
+/* Glassmorphism Card */
+.about-glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: transform 0.3s;
+}
+
+/* 3D Service Cards */
+.service-card-3d {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 30px;
+    border-radius: 15px;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: all 0.5s ease;
+}
+
+.service-card-3d:hover {
+    background: rgba(105, 90, 166, 0.3);
+    transform: translateZ(20px);
+}
+
+/* Hero Text Animation */
+.header-title {
+    animation: fadeInUp 1.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Change .3d-button to .btn-3d */
+.btn-3d {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(105, 90, 166, 0.4);
+}
+
+.btn-3d:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(105, 90, 166, 0.6);
+}

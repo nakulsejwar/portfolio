@@ -1,360 +1,764 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Nakul">
-    <title>Nakul' port</title>
-    <!-- font icons -->
+    <title>Nakul Sejwar | Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
-    <!-- Bootstrap + main styles -->
-	<link rel="stylesheet" href="assets/css/nakul.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --accent: #695aa6;
+            --accent-glow: rgba(105, 90, 166, 0.4);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+        }
+        /* Target the image inside the link when the link is hovered */
+        .wp-hover:hover .wp-icon {
+            /* This filter approximates your purple shade #695aa6 */
+            filter: invert(41%) sepia(12%) saturate(3015%) hue-rotate(212deg) brightness(88%) contrast(85%) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Optional: Ensure the other font icons match the hover effect */
+        .social-links a:hover i {
+            color: var(--accent) !important;
+            transform: translateY(-2px);
+            transition: 0.3s;
+        }
+
+        /* --- Global Reset & Background --- */
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .premium-bg-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, transparent 0%, var(--bg-dark) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- Navigation --- */
+        .custom-navbar {
+            padding: 20px;
+            background: rgba(5, 5, 5, 0.8) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .navbar-brand { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; }
+        .nav-link { font-weight: 600; font-size: 0.9rem; letter-spacing: 1px; color: var(--text-muted) !important; transition: 0.3s; }
+        .nav-link:hover { color: var(--accent) !important; transform: translateY(-2px); }
+
+        /* --- Hero Section --- */
+        .header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            perspective: 1000px;
+        }
+        .header-content {
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+        }
+        .header-title { font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+        .header-title span { font-family: 'Playfair Display', serif; font-style: italic; color: var(--accent); }
+        .header-subtitle { color: var(--text-muted); letter-spacing: 6px; font-weight: 300; margin-bottom: 40px; text-transform: uppercase; }
+
+        /* --- Buttons --- */
+        .btn-premium {
+            padding: 16px 45px;
+            border-radius: 50px;
+            background: var(--accent);
+            border: none;
+            color: white !important;
+            font-weight: 800;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(105, 90, 166, 0.3);
+            transition: 0.4s;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+        .btn-premium:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 15px 40px rgba(105, 90, 166, 0.6); }
+
+        /* --- Section Styling --- */
+        .section { padding: 120px 0; position: relative; }
+        .section-subtitle { color: var(--accent); text-transform: uppercase; letter-spacing: 6px; font-weight: 800; font-size: 0.8rem; margin-bottom: 10px; display: block;}
+
+        /* --- Card Aesthetics & 3D Tilt --- */
+        .premium-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(15px);
+            padding: 45px;
+            border-radius: 30px;
+            transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            height: 100%;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+        .premium-card:hover {
+            background: rgba(105, 90, 166, 0.05);
+            border-color: var(--accent);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        /* --- Skills Stack --- */
+        .skill-tag {
+            display: inline-block;
+            background: rgba(105, 90, 166, 0.1);
+            padding: 12px 24px;
+            border-radius: 50px;
+            margin: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid var(--glass-border);
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: floatSkill 4s ease-in-out infinite;
+        }
+        .skill-tag:hover {
+            background: var(--accent);
+            transform: scale(1.1) rotate(3deg);
+            border-color: var(--text-main);
+        }
+        @keyframes floatSkill {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* --- Portfolio --- */
+        .portfolio-card {
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            margin-bottom: 30px;
+            background: var(--glass);
+        }
+        .portfolio-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .portfolio-card:hover img { transform: scale(1.1) rotate(1deg); filter: blur(3px) brightness(0.4); }
+        .portfolio-card-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.5s;
+            padding: 20px;
+        }
+        .portfolio-card:hover .portfolio-card-overlay { opacity: 1; }
+
+        /* --- Experience Logic --- */
+        .experience-card-img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: #fff;
+            padding: 5px;
+            margin-right: 20px;
+        }
+
+        /* --- Reveal Animations --- */
+        .reveal { opacity: 0; transform: translateY(60px); transition: 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- Contact Section --- */
+        .contact-pill {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 20px 40px;
+            border-radius: 100px;
+            color: #fff;
+            font-weight: 600;
+            transition: 0.4s;
+            display: block;
+            margin-bottom: 20px;
+        }
+        .contact-pill:hover { background: var(--accent); color: #fff; text-decoration: none; transform: scale(1.05); }
+        /* Brings color back on hover */
+        .parallax-element:hover .about-img-premium {
+            filter: grayscale(0%) !important;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Makes the decorative border pulse purple on hover */
+        .parallax-element:hover .about-border-glow {
+            transform: rotate(0deg) scale(1.05) !important;
+            box-shadow: 0 0 30px var(--accent);
+            border-color: #fff !important;
+        }
+
+        /* Perspective container for the tilt */
+        .parallax-element {
+            perspective: 1000px;
+        }
+        /* Container Perspective */
+        #service, #portfolio, #skills, #experience {
+            perspective: 1500px;
+        }
+
+        /* Base style for all cards to support 3D */
+        .premium-card, .portfolio-card, .skill-tag {
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease, filter 0.5s ease;
+            will-change: transform;
+        }
+
+        /* Portfolio Specific Hover: Bring back color */
+        .portfolio-card img {
+            filter: grayscale(100%);
+            transition: 0.6s ease;
+        }
+
+        .portfolio-card:hover img {
+            filter: grayscale(0%) !important;
+            transform: scale(1.1);
+        }
+
+        /* Skills Floating Animation - unique speeds for parallax feel */
+        .skill-tag:nth-child(odd) { animation: floatSkill 5s ease-in-out infinite; }
+        .skill-tag:nth-child(even) { animation: floatSkill 7s ease-in-out infinite; }
+
+        @keyframes floatSkill {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+        /* Portfolio Card Container */
+        .portfolio-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 25px;
+            background: #000;
+        }
+
+        /* The Overlay - Hidden by default */
+        .portfolio-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(105, 90, 166, 0.85); /* Your purple shade with transparency */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0; /* Hidden */
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 20px;
+            z-index: 2;
+        }
+
+        /* Text styling inside overlay */
+        .portfolio-card-overlay h4 {
+            color: #ffffff;
+            font-weight: 800;
+            margin-bottom: 10px;
+            transform: translateY(20px);
+            transition: 0.5s ease;
+        }
+
+        .portfolio-card-overlay p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            transform: translateY(20px);
+            transition: 0.5s ease 0.1s;
+        }
+
+        /* Hover State: Reveal Overlay and Slide Text Up */
+        .portfolio-card:hover .portfolio-card-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-card:hover .portfolio-card-overlay h4,
+        .portfolio-card:hover .portfolio-card-overlay p {
+            transform: translateY(0);
+        }
+
+        /* Image grayscale to color transition */
+        .portfolio-card img {
+            filter: grayscale(100%);
+            transition: 0.8s ease;
+        }
+
+        .portfolio-card:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+        /* Custom Purple Small Button */
+        .btn-premium-sm {
+            padding: 8px 20px;
+            border-radius: 50px;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: #ffffff !important;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-premium-sm:hover {
+            background: var(--accent);
+            box-shadow: 0 5px 15px rgba(105, 90, 166, 0.4);
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+    </style>
 </head>
+
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
-    <!-- Page Navbar -->
-    <nav class="custom-navbar" data-spy="affix" data-offset-top="20">
+    <canvas id="bg-canvas"></canvas>
+    <div class="premium-bg-overlay"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top">
         <div class="container">
-            <a class="logo" href="index.html">Nakul</a>         
-            <ul class="nav">
-                <li class="item">
-                    <a class="link" href="#home">Home</a>
-                </li>
-                <li class="item">
-                    <a class="link" href="#about">About</a>
-                </li>
-                <li class="item">
-                    <a class="link" href="#portfolio">Portfolio</a>
-                </li>
-                <li class="item">
-                    <a class="link" href="#experience">Experience</a>
-                </li>
-                <li class="item">
-                    <a class="link" href="#contact">Contact</a>
-                </li>
-                
-            </ul>
-            <a href="javascript:void(0)" id="nav-toggle" class="hamburger hamburger--elastic">
-                <div class="hamburger-box">
-                  <div class="hamburger-inner"></div>
-                </div>
-            </a>
-        </div>          
-    </nav><!-- End of Page Navbar -->
-
-    <!-- page header -->
-    <header id="home" class="header">
-        <div class="overlay"></div>
-        <div class="header-content container">
-            <h1 class="header-title">
-                <span class="up">HI!</span>
-                <span class="down">I am Nakul Sejwar</span>
-            </h1>
-            <p class="header-subtitle">PYTHON/DJANGO DEVELOPER &<br>FRONTEND WEB DESIGNER</p>            
-
-            <button class="btn btn-primary"><a class="link" style="color: #ffffff;" href="#portfolio">Visit My Works</a></button>
-        </div>              
-    </header><!-- end of page header -->
-
-    <!-- about section -->
-    <section class="section pt-0" id="about">
-        <!-- container -->
-        <div class="container text-center">
-            <!-- about wrapper -->
-            <div class="about">
-                <div class="about-img-holder">
-                    <img src="assets/imgs/man.png" class="about-img" alt="Nakul' portfolio website">
-                </div>
-                <div class="about-caption">
-                    <p class="section-subtitle">Who Am I ?</p>
-                    <h2 class="section-title mb-3">About Me</h2>
-                    <p>
-                        Hello, my name is NAKUL SEJWAR, and I am currently pursuing an undergraduate degree at BBAU Lucknow in the COMPUTER SCIENCE and ENGINEERING (CSE) branch. I'm a Django developer as well as Wordpress designer with a degree in computer engineering.<br>
-• I'm keen on the Realistic planning and virtual entertainment the board field and I'm looking for a thrilling open doors connected with something similar.<br>
-• As a CS student, it helped me learn anything digital quickly. managing, designing, coding, writing about SEO. I enjoy learning and am constantly interested in new things. I enjoy managing and designing things. I'm a detail orientated individual and I keep my objectives and undertaking coordinated to keep up with efficiency.<br>
-• I believe that the skills I've developed in a dynamic environment are what make me who I am, and I'm eager to use and improve them at every opportunity.</p>
-                    <a href="https://drive.google.com/file/d/16ulaOzVERN-fyvs64XdJ-QzQfTdzK6vt/view?usp=sharing"><button class="btn-rounded btn btn-outline-primary mt-4">Download CV</button></a>
-                </div>              
-            </div><!-- end of about wrapper -->
-        </div><!-- end of container -->
-    </section> <!-- end of about section -->
-
-    <!-- service section -->
-    <section class="section" id="service">
-        <div class="container text-center">
-            <p class="section-subtitle">What I Do ?</p>
-            <h6 class="section-title mb-6">Working Profiles</h6>
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-6 col-lg-3">
-                    <div class="service-card">
-                        <div class="body">
-                            <img src="assets/imgs/icons8-python.svg" alt="Nakul' portfolio website" class="icon">
-                            <h6 class="title">Python/Django Developer</h6>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="service-card">
-                        <div class="body">
-                            <img src="assets/imgs/responsive.svg" alt="Nakul' portfolio website" class="icon">
-                            <h6 class="title">Front-end Developer</h6>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="service-card">
-                        <div class="body">
-                            <img src="assets/imgs/icons8-wordpress.svg" alt="Nakul' portfolio website" class="icon">
-                            <h6 class="title">Wordpress Developer</h6>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="service-card">
-                        <div class="body">
-                            <img src="assets/imgs/analytics.svg" alt="Nakul' portfolio website" class="icon">
-                            <h6 class="title">UI/UX Designer</h6>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div><!-- end of row -->
+            <a class="navbar-brand" href="index.html">Nakul.</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent">
+                <span class="ti-menu" style="color: #fff;"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">ABOUT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#service">SERVICES</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">PORTFOLIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">STACK</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">EXPERIENCE</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">CONTACT</a></li>
+                </ul>
+            </div>
         </div>
-    </section><!-- end of service section -->
+    </nav>
 
-    <!-- portfolio section -->
+    <header class="header">
+        <div class="header-content container">
+            <div class="reveal active">
+                <h1 class="header-title">
+                    <span class="d-block" style="font-size: 0.3em; letter-spacing: 15px; text-transform: uppercase;">Creative Mind</span>
+                    I am Nakul <span>Sejwar</span>
+                </h1>
+                <p class="header-subtitle">Python / Django Architect & Frontend Developer</p>
+                <div class="animate__animated animate__pulse animate__infinite">
+                    <a href="#portfolio" class="btn-premium">Explore My Universe</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="section" id="about">
+        <div class="container">
+            <div class="row align-items-center reveal">
+                <div class="col-md-5 mb-5 mb-md-0">
+                    <div class="parallax-element" style="position: relative; padding: 20px;">
+                        <div class="about-border-glow" style="position: absolute; inset: 0; border: 2px solid var(--accent); border-radius: 40px; transform: rotate(-5deg); transition: 0.5s;"></div>
+                        
+                        <img src="assets/imgs/man.png" 
+                            class="img-fluid about-img-premium hover-tilt" 
+                            alt="Nakul Sejwar" 
+                            style="border-radius: 40px; background: var(--glass); position: relative; z-index: 1; filter: grayscale(100%); transition: filter 0.6s ease, transform 0.1s ease-out; cursor: pointer;">
+                    </div>
+                </div>
+                <div class="col-md-7 pl-lg-5">
+                    <span class="section-subtitle">The Persona</span>
+                    <h2 class="mb-4" style="font-weight: 800; font-size: 2.5rem;">Engineering Solutions with Precision</h2>
+                    <p class="text-muted mb-4" style="line-height: 1.8;">
+                        Hello, my name is <strong>Nakul Sejwar</strong>. I am currently working as a Full Stack Developer at General Enterprises, specializing in Django-based backend systems, AI integrations, and WordPress development, while pursuing an undergraduate degree in Computer Science and Engineering (CSE) from BBAU Lucknow.
+                    </p>
+                    <ul class="text-muted list-unstyled mb-4" style="line-height: 2.2;">
+                        <li><i class="ti-check mr-2" style="color: var(--accent);"></i> Expert in realistic planning and virtual entertainment management.</li>
+                        <li><i class="ti-check mr-2" style="color: var(--accent);"></i> Detail-oriented CS student with rapid digital learning capabilities.</li>
+                        <li><i class="ti-check mr-2" style="color: var(--accent);"></i> Focused on SEO-driven, high-productivity coding environments.</li>
+                        <li><i class="ti-check mr-2" style="color: var(--accent);"></i> Committed to dynamic improvement and efficiency in every project.</li>
+                    </ul>
+                    <a href="https://drive.google.com/file/d/16ulaOzVERN-fyvs64XdJ-QzQfTdzK6vt/view?usp=sharing" class="btn-premium">Download Full CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-dark-lite" id="service">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <span class="section-subtitle">Expertise</span>
+                <h2 style="font-weight: 800; font-size: 2.5rem;">Working Profiles</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4 reveal">
+                    <div class="premium-card text-center tilt-effect">
+                        <img src="assets/imgs/icons8-python.svg" width="60" class="mb-4">
+                        <h6 class="font-weight-bold">Django Architect</h6>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4 reveal">
+                    <div class="premium-card text-center tilt-effect">
+                        <img src="assets/imgs/responsive.svg" width="60" class="mb-4">
+                        <h6 class="font-weight-bold">Frontend Dev</h6>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4 reveal">
+                    <div class="premium-card text-center tilt-effect">
+                        <img src="assets/imgs/icons8-wordpress.svg" width="60" class="mb-4">
+                        <h6 class="font-weight-bold">Wordpress Specialist</h6>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4 reveal">
+                    <div class="premium-card text-center tilt-effect">
+                        <img src="assets/imgs/analytics.svg" width="60" class="mb-4">
+                        <h6 class="font-weight-bold">UI/UX Strategy</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="section" id="portfolio">
         <div class="container text-center">
-            <p class="section-subtitle">What I Did ?</p>
-            <h6 class="section-title mb-6">Portfolio</h6>
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-4">
-                    <a href="python-projects.html" class="portfolio-card">
-                        <img src="assets/imgs/Python.png" class="portfolio-card-img" alt="Nakul' portfolio website">    
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Python Projects</h5>
-                                <p class="font-weight-normal">Click to view</p>
-                            </span>                         
-                        </span>                     
+            <span class="section-subtitle reveal">Selected Works</span>
+            <h2 class="mb-5 reveal" style="font-weight: 800; font-size: 2.5rem;">Visual Showcase</h2>
+            <div class="row reveal">
+                <div class="col-md-4 mb-4">
+                    <a href="python-projects.html" class="portfolio-card d-block">
+                        <img src="assets/imgs/Python.png" alt="Python Projects">
+                        <div class="portfolio-card-overlay">
+                            <h4 class="font-weight-bold">Python Projects</h4>
+                            <p>Click to View Suite</p>
+                        </div>
                     </a>
                 </div>
-                <div class="col-md-4">
-                    <a href="wordpress-projects.html" class="portfolio-card">
-                        <img class="portfolio-card-img" src="assets/imgs/WordPress.png" class="img-responsive rounded" alt="Nakul' portfolio website">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Wordpress Websites</h5>
-                                <p class="font-weight-normal">Click to View</p>
-                            </span>                         
-                        </span>                         
+                <div class="col-md-4 mb-4">
+                    <a href="wordpress-projects.html" class="portfolio-card d-block">
+                        <img src="assets/imgs/WordPress.png" alt="WordPress Projects">
+                        <div class="portfolio-card-overlay">
+                            <h4 class="font-weight-bold">WordPress Solutions</h4>
+                            <p>Click to View Sites</p>
+                        </div>
                     </a>
                 </div>
-                <div class="col-md-4">
-                    <a href="https://www.behance.net/nakulsejwar" class="portfolio-card">
-                        <img class="portfolio-card-img" src="assets/imgs/uiux.jpg" class="img-responsive rounded" alt="Nakul' portfolio website">    
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>UI/UX Designs</h5>
-                                <p class="font-weight-normal">Click to view</p>
-                            </span>                         
-                        </span>                     
+                <div class="col-md-4 mb-4">
+                    <a href="https://www.behance.net/nakulsejwar" class="portfolio-card d-block">
+                        <img src="assets/imgs/uiux.jpg" alt="UI/UX Designs">
+                        <div class="portfolio-card-overlay">
+                            <h4 class="font-weight-bold">UI/UX Designs</h4>
+                            <p>View Behance Port</p>
+                        </div>
                     </a>
                 </div>
-            </div><!-- end of row -->
-        </div><!-- end of container -->
-    </section> <!-- end of portfolio section -->
+            </div>
+        </div>
+    </section>
 
-    <!-- skills section -->
     <section class="section" id="skills">
-        <div class="container text-center">
-            <p class="section-subtitle">What i have worked on ?</p>
-            <h6 class="section-title mb-6">Technical Skills</h6>
-            <!-- row -->
-            <div class="skills-wrapper">
-                <div class="skills-card">
-                    <div class="skills-card-header">
-                        <img class="skills-card-icon" src="assets/imgs/language-svgrepo-com.svg" alt="Nakul' portfolio website">
-                    </div>
-                    <div class="skills-card-body">
-                        <h6 class="skills-card-title">Languages</h6>
-                        <div class="skills-card-list">
-                            <p>Python</p>
-                            <p>SQL/MYSQL </p>
-                            <p>HTML</p>
-                            <p>CSS</p>
-                            <p>JavaScript</p>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="skills-card">
-                    <div class="skills-card-header">
-                        <img class="skills-card-icon" src="assets/imgs/cogwheel-svgrepo-com.svg" alt="Nakul' portfolio website">
-                    </div>
-                    <div class="skills-card-body">
-                        <h6 class="skills-card-title">Technologies/Frameworks</h6>
-                        <div class="skills-card-list">
-                            <p>Django</p>
-                            <p>Flask</p>
-                            <p>Bootstrap</p>
-                            <p>Jquery</p>
-                            <p>React.js</p>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="skills-card">
-                    <div class="skills-card-header">
-                        <img class="skills-card-icon" src="assets/imgs/startup.svg" alt="Nakul' portfolio website">
-                    </div>
-                    <div class="skills-card-body">
-                        <h6 class="skills-card-title">Developer Tools</h6>
-                        <div class="skills-card-list">
-                            <p>Git/Github</p>
-                            <p>VS Code</p>
-                            <p>Pycharm</p>
-                            <p>Figma</p>
-                            <p>Anaconda</p>
-                            <p>Wordpress</p>
-                            <p>Vercel</p>
-                           
-                        </div>
-                    </div>
-                    
-                </div>
-
-            </div><!-- end of skills wrapper -->
-        </div> <!-- end of container -->
-    </section><!-- end of skills section -->
-
-    <!-- section -->
-    <section class="section-sm bg-primary">
-        <!-- container -->
-        <div class="container text-center text-sm-left">
-            <!-- row -->
-            <div class="row align-items-center">
-                <div class="col-sm offset-md-1 mb-4 mb-md-0">
-                    <h6 class="title text-light">Want to work with me?</h6>
-                    <p class="m-0 text-light">Always feel Free to Contact & Hire me</p>
-                </div>
-                <div class="col-sm offset-sm-2 offset-md-3"><a href="#contact">
-                    <button class="btn btn-lg my-font btn-light rounded">Hire Me</button></a>
-                </div>
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </section> <!-- end of section -->
-
-    <!-- experience section -->
-    <section class="section" id="experience">
-        <div class="container text-center">
-            <p class="section-subtitle">What I Have Done Till Now ?</p>
-            <h6 class="section-title mb-6">Experience</h6>
-
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="experience-card">
-                        <div class="experience-card-img-holder">
-                            <img src="assets/imgs/rdsologo.png" class="experience-card-img" alt="Nakul' portfolio website">                           
-                        </div>
-                        <div class="experience-card-body">
-                            <div class="row">
-                                <h6 class="experience-card-title col-md-8">Research Design And Standard Organization<br>(Django developer)</h6>
-                                <p class="col-md-4 experience-card-title" style="font-size: 12px; font-weight: 600;">June 2023 - July 2023</p>
-                            </div>
-                            <p class="experience-card-subtitle">•Developed a dynamic blogging web application, Utilized frontend & backend technologies in such <br>a way that user could experience its richness of features.<br>
-                                • Utilized database to store and manage application data, gaining practical experience in database management
-                                and integration which led to a 41% improvement in application response time.
-                                • Awarded a Letter of Recommendation as the only student among 100+ participants in summer training at RDSO,
-                                reflecting exceptional performance and contributions.
-                            </p>
-                            <div class="row">
-                                <a href="https://drive.google.com/file/d/1mclJQD7f81kzIOt3uN5Sgd8E9_ZpstdL/view?usp=sharing"><button class="btn-rounded btn btn-outline-primary mt-4">View Certificate</button>
-                                <a href="https://drive.google.com/file/d/1_BmyCr01pKGEwIzg_A3drso9pyll6M1B/view?usp=sharing"><button class="btn-rounded btn btn-outline-primary mt-4">Letter of Recommendations</button></a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="experience-card">
-                        <div class="experience-card-img-holder">
-                            <img src="assets/imgs/interpret_media_mumbai_logo.jpg" class="experience-card-img" alt="Nakul' portfolio website">                        
-                        </div>
-                        <div class="experience-card-body">
-                            <div class="row">
-                                <h6 class="experience-card-title col-md-8">Interpret Media<br>(Web Development Intern)</h6>
-                                <p class="col-md-4 experience-card-title" style="font-size: 12px; font-weight: 600;">August 2023 - Nov 2023</p>
-                            </div>
-                            <p class="experience-card-subtitle">•Contributed to the design and development of responsive websites using HTML, CSS, and JavaScript, ensuring crossbrowser compatibility.<br>
-                                • Assisted in creating wireframes and prototypes, contributing to the visual design and user journey mapping.<br>
-                                • Worked with CMS platforms like WordPress or Drupal, customizing themes and plugins to meet client specifications.
-                                • Successfully earned an internship certificate for hands-on experience and contributions in web development],
-                                demonstrating practical skills and professional development. (
-                            </p>
-                            <a href="https://drive.google.com/file/d/11rWwCjID4jo7oCbREOb4mnihu0a6t4lC/view?usp=sharing"><button class="btn-rounded btn btn-outline-primary mt-4">View Certificate</button></a>
-                        </div>
-                    </div>
-                </div>
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <span class="section-subtitle">The Ecosystem</span>
+                <h2 style="font-weight: 800; font-size: 2.5rem;">Commanded Technologies</h2>
             </div>
-        </div> <!-- end of container -->
-    </section> <!-- end of experience section -->
-    
-
-    <!-- contact section -->
-    <section class="section" id="contact" style="background-color: #695aa6;">
-        <div class="container text-center">
-            <p class="section-subtitle" style="color: white;">How can you communicate?</p>
-            <h6 class="section-title mb-5" style="color: white;">Reach Me Out</h6>
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-4 contact-margin">
-                    <a href="tel:+918303383499" >
-                        <button class="btn btn-lg my-font btn-light rounded">+91 8303383499</button>                    
-                    </a>
-                </div>
-                <div class="col-md-4 contact-margin">
-                    <a href="mailto:nakulsejwar02@gmail.com" >
-                        <button class="btn btn-lg my-font btn-light rounded">nakulsejwar02@gmail.com</button>                        
-                    </a>
-                </div>
-                <div class="col-md-4 contact-margin">
-                    <a href="#" >
-                        <button class="btn btn-lg my-font btn-light rounded">Main Road, Bhadohi</button>                        
-                    </a>
-                </div>
-                
-            </div><!-- end of row -->
             
-        </div><!-- end of container -->
-    </section><!-- end of contact section -->
+            <div class="premium-card reveal p-5">
+                <div class="row">
+                    <div class="col-md-4 mb-5 mb-md-0">
+                        <h5 class="font-weight-bold mb-4" style="letter-spacing: 2px; color: var(--accent);">LANGUAGES</h5>
+                        <div class="skill-tag" style="animation-delay: 0.1s;">Python</div>
+                        <div class="skill-tag" style="animation-delay: 0.3s;">SQL / MySQL</div>
+                        <div class="skill-tag" style="animation-delay: 0.5s;">HTML5</div>
+                        <div class="skill-tag" style="animation-delay: 0.7s;">CSS3</div>
+                        <div class="skill-tag" style="animation-delay: 0.9s;">JavaScript</div>
+                    </div>
 
-    
-    <!-- footer -->
-    <div class="container">
-        <footer class="footer">       
-            <p class="mb-0">Copyright <script>document.write(new Date().getFullYear())</script> &copy; <a href="#">Nakul</a></p>
-            <div class="social-links text-right m-auto ml-sm-auto">
-                <a href="https://www.linkedin.com/in/nakulsejwar/" class="link"><i class="ti-linkedin"></i></a>
-                <a href="https://github.com/nakulsejwar/" class="link"><i class="ti-github"></i></a>
-                <a href="https://wa.me/918303383499" class="link"><img src="assets/imgs/whatsapp.svg" class="icon"></a>       
+                    <div class="col-md-4 mb-5 mb-md-0">
+                        <h5 class="font-weight-bold mb-4" style="letter-spacing: 2px; color: var(--accent);">FRAMEWORKS</h5>
+                        <div class="skill-tag" style="animation-delay: 0.2s;">Django</div>
+                        <div class="skill-tag" style="animation-delay: 0.4s;">Flask</div>
+                        <div class="skill-tag" style="animation-delay: 0.1s;">React.js</div>
+                        <div class="skill-tag" style="animation-delay: 0.3s;">Bootstrap</div>
+                        <div class="skill-tag" style="animation-delay: 0.5s;">JQuery</div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h5 class="font-weight-bold mb-4" style="letter-spacing: 2px; color: var(--accent);">TOOLING</h5>
+                        <div class="skill-tag" style="animation-delay: 0.6s;">Git / GitHub</div>
+                        <div class="skill-tag" style="animation-delay: 0.2s;">VS Code</div>
+                        <div class="skill-tag" style="animation-delay: 0.4s;">Figma</div>
+                        <div class="skill-tag" style="animation-delay: 0.1s;">Vercel</div>
+                        <div class="skill-tag" style="animation-delay: 0.3s;">PyCharm</div>
+                    </div>
+                </div>
             </div>
-        </footer>
-    </div> <!-- end of page footer -->
-	
-	<!-- core  -->
-    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
-    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+        </div>
+    </section>
 
-    <!-- bootstrap 3 affix -->
-	<script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+    <section class="section" id="experience">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <span class="section-subtitle">Journey</span>
+                <h2 style="font-weight: 800; font-size: 2.5rem;">Professional Milestones</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4 reveal">
+                    <div class="premium-card tilt-effect">
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="assets/imgs/rdsologo.png" class="experience-card-img">
+                            <div>
+                                <h6 class="mb-0 font-weight-bold">RDSO | Django Developer</h6>
+                                <small style="color: var(--accent); font-weight: 700;">June 2023 - July 2023</small>
+                            </div>
+                        </div>
+                        <p class="text-muted small mb-4" style="line-height: 1.8;">
+                            Developed a dynamic blogging web application, utilizing frontend and backend technologies. Optimized database management which led to a <strong>41% improvement</strong> in application response time. Awarded a Letter of Recommendation as the only student among 100+ participants.
+                        </p>
+                        <div class="d-flex flex-wrap">
+                            <a href="https://drive.google.com/file/d/1mclJQD7f81kzIOt3uN5Sgd8E9_ZpstdL/view?usp=sharing" class="btn btn-premium-sm mr-2 mb-2">View Certificate</a>
+                            <a href="https://drive.google.com/file/d/1_BmyCr01pKGEwIzg_A3drso9pyll6M1B/view?usp=sharing" class="btn btn-premium-sm mb-2">Recommendation Letter</a>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- js -->
-    <script src="assets/js/nakul.js"></script>
+                <div class="col-md-6 mb-4 reveal">
+                    <div class="premium-card tilt-effect">
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="assets/imgs/interpret_media_mumbai_logo.jpg" class="experience-card-img">
+                            <div>
+                                <h6 class="mb-0 font-weight-bold">Interpret Media | Web Intern</h6>
+                                <small style="color: var(--accent); font-weight: 700;">August 2023 - Nov 2023</small>
+                            </div>
+                        </div>
+                        <p class="text-muted small mb-4" style="line-height: 1.8;">
+                            Contributed to the design and development of responsive websites ensuring cross-browser compatibility. Worked with CMS platforms like WordPress, customizing themes and plugins to meet client specifications. Earned an internship certificate for hands-on development experience.
+                        </p>
+                        <a href="https://drive.google.com/file/d/11rWwCjID4jo7oCbREOb4mnihu0a6t4lC/view?usp=sharing" class="btn btn-premium-sm">View Certificate</a>
+                    </div>
+                </div>
 
+                <div class="col-md-6 mb-4 reveal">
+                    <div class="premium-card tilt-effect">
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="assets/imgs/man.png" class="experience-card-img">
+                            <div>
+                                <h6 class="mb-0 font-weight-bold">Freelancer | Full Stack Developer</h6>
+                                <small style="color: var(--accent); font-weight: 700;">Nov 2022 - Present</small>
+                            </div>
+                        </div>
+                        <p class="text-muted small mb-4" style="line-height: 1.8;">
+                            Working as an independent Full Stack Developer, delivering scalable web applications using <strong>Django, REST APIs, and AI integrations</strong>. Built multiple client projects including dashboards, automation tools, and WordPress-based websites.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4 reveal">
+                    <div class="premium-card tilt-effect">
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="assets/imgs/general_enterprises_10_logo.jpg" class="experience-card-img">
+                            <div>
+                                <h6 class="mb-0 font-weight-bold">General Enterprises | Full Stack Developer</h6>
+                                <small style="color: var(--accent); font-weight: 700;">May 2025 - Present</small>
+                            </div>
+                        </div>
+                        <p class="text-muted small mb-4" style="line-height: 1.8;">
+                            Currently working as a Full Stack Developer, building <strong>Django-based backend systems</strong> with advanced <strong>AI-driven features</strong> including automation workflows and intelligent APIs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section text-center" id="contact" style="background: linear-gradient(to top, #050505, #121021);">
+        <div class="container">
+            <div class="reveal">
+                <span class="section-subtitle">Communication</span>
+                <h2 class="mb-5" style="font-weight: 800; font-size: 3rem;">Let's Build the Future</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-4"><a href="tel:+918303383499" class="contact-pill">+91 8303383499</a></div>
+                    <div class="col-md-5"><a href="mailto:nakulsejwar02@gmail.com" class="contact-pill">nakulsejwar02@gmail.com</a></div>
+                    <div class="col-md-3"><a href="#" class="contact-pill">Bhadohi, IN</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-5" style="border-top: 1px solid var(--glass-border);">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <p class="mb-0 text-muted small">&copy; <script>document.write(new Date().getFullYear())</script> Nakul Sejwar. All Rights Reserved.</p>
+            <div class="social-links mt-3 mt-md-0">
+                <a href="https://www.linkedin.com/in/nakulsejwar/" class="nav-link d-inline mx-2"><i class="ti-linkedin"></i></a>
+                <a href="https://github.com/nakulsejwar/" class="nav-link d-inline mx-2"><i class="ti-github"></i></a>
+                <a href="https://wa.me/918303383499" class="nav-link d-inline mx-2 wp-hover">
+                    <img src="assets/imgs/whatsapp.svg" width="20" class="wp-icon" style="filter: brightness(0) invert(1); transition: 0.3s;">
+                </a>            
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // --- 1. DYNAMIC PARTICLE BACKGROUND ---
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(105, 90, 166, 0.4)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 100; i++) particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animateParticles);
+        }
+        initParticles(); animateParticles();
+
+        // --- 2. MOUSE PARALLAX ENGINE ---
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            const content = document.querySelector('.header-content');
+            if(content) content.style.transform = `translate(${x}px, ${y}px)`;
+        });
+
+        // --- 3. 3D TILT EFFECT ---
+        const tiltCards = document.querySelectorAll('.tilt-effect');
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                card.style.transform = `perspective(1000px) rotateX(${-y / 10}deg) rotateY(${x / 10}deg) translateY(-10px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)`;
+            });
+        });
+
+        // --- 4. SCROLL REVEAL OBSERVER ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        });
+        const aboutImg = document.querySelector('.hover-tilt');
+        const aboutContainer = document.querySelector('.parallax-element');
+
+        if (aboutContainer && aboutImg) {
+            aboutContainer.addEventListener('mousemove', (e) => {
+                const rect = aboutContainer.getBoundingClientRect();
+                
+                // Calculate mouse position from -1 to 1
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+                // Multiply by intensity (e.g., 20deg tilt)
+                const tiltX = y * -20; 
+                const tiltY = x * 20;
+
+                aboutImg.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.05)`;
+            });
+
+            aboutContainer.addEventListener('mouseleave', () => {
+                // Smoothly reset position
+                aboutImg.style.transition = "all 0.6s ease";
+                aboutImg.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
+                
+                // Remove the transition delay after it finishes so movement stays snappy
+                setTimeout(() => {
+                    aboutImg.style.transition = "filter 0.6s ease, transform 0.1s ease-out";
+                }, 600);
+            });
+        }
+        // Select all elements that should have the 3D hover effect
+        $(document).ready(function() {
+        const tiltElements = document.querySelectorAll('.tilt-effect, .portfolio-card, .premium-card');
+
+        tiltElements.forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left; 
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 15; 
+                const rotateY = (centerX - x) / 15;
+
+                // Only rotate the card, don't touch the opacity (CSS handles that now)
+                el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
+            });
+
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)`;
+                el.style.transition = "transform 0.5s ease";
+                
+                setTimeout(() => {
+                    el.style.transition = "transform 0.1s ease-out";
+                }, 500);
+            });
+        });
+    });
+    </script>
 </body>
 </html>

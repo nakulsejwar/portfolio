@@ -1,227 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Nakul">
-    <title>Nakul' port</title>
-    <!-- font icons -->
-    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
-    <!-- Bootstrap + main styles -->
-	<link rel="stylesheet" href="assets/css/nakul.css">
-</head>
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-
-    <!-- Page Navbar -->
-    <nav class="custom-navbar" data-spy="affix" data-offset-top="20" id="second-nav">
-        <div class="container">
-            <a class="logo" href="index.html">Nakul</a>         
-            <ul class="nav">
-                <li class="item">
-                    <a class="link" href="index.html">Home</a>
-                </li>
-                <li class="item">
-                    <a class="link" href="index.html#about">About</a>
-                </li>
-                <li class="item">
-                    <a class="link" href="index.html#portfolio">Portfolio</a>
-                </li>
-                <li class="item">
-                    <a class="link" href="index.html#experience">Experience</a>
-                </li>
-                <li class="item">
-                    <a class="link" href="index.html#contact">Contact</a>
-                </li>
-                
-            </ul>
-            <a href="javascript:void(0)" id="nav-toggle" class="hamburger hamburger--elastic">
-                <div class="hamburger-box">
-                  <div class="hamburger-inner" ></div>
-                </div>
-            </a>
-        </div>          
-    </nav><!-- End of Page Navbar -->
-
+    <title>Python Projects | Nakul Sejwar</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --accent: #695aa6;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+        }
 
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
 
+        /* --- PARALLAX BACKGROUND --- */
+        .premium-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% -20%, #1a1535 0%, var(--bg-dark) 80%);
+            z-index: -1;
+        }
 
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0; z-index: -1; opacity: 0.3;
+        }
 
+        /* --- Navigation --- */
+        .custom-navbar {
+            padding: 20px;
+            background: rgba(5, 5, 5, 0.8) !important;
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .navbar-brand { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #fff !important; }
 
-    <!-- blog section -->
-    <section class="section" id="project">
-        <!-- container -->
-        <div class="container text-center">
-            
-            <h6 class="section-title mb-6">Python Pojects</h6>
-            <!-- blog-wrapper -->
-            <div class="blog-card">
-                <div class="blog-card-header">
-                    <img src="assets/imgs/img1.png" class="blog-card-img" alt="Nakul' portfolio website">
-                </div>
-                <div class="blog-card-body">
-                    <h5 class="blog-card-title">Digital Realm</h6>
-                    <p>Digital realm is a user friendly Blogging application which enabling users to discover new ideas and thoughts of the people around</p>
+        /* --- Project Cards (Extraordinary Style) --- */
+        .blog-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            margin-bottom: 60px;
+            overflow: hidden;
+            transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
 
-                    <p><b>Integrated Google & meta API to sign in using the social accounts and enabled otp system to retrieve account</b></p>
-                    <div style="display: flex;">
-                        <!-- First column -->
-                        <div style="width: 50%;">
-                            <button class="btn btn-primary" style="border-radius: 20px;"><a class="link" style="color: #ffffff;" href="https://digital-realm.vercel.app/">Check out live</a></button>
-                        </div>
-                        <!-- Second column -->
-                        <div style="width: 50%;">
-                            <button class="btn btn-primary" style="border-radius: 20px;"><a class="link" style="color: #ffffff;" href="https://github.com/nakulsejwar/Digital-Realm">Github Repo</a></button>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- end of blog wrapper -->
+        .blog-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
 
-            <!-- blog-wrapper -->
-            <div class="blog-card">
-                <div class="blog-card-header">
-                    <img src="assets/imgs/img2.png" class="blog-card-img" alt="Nakul' portfolio website">
-                </div>
-                <div class="blog-card-body">
-                    <h5 class="blog-card-title">Car Rental</h6>
-                    <p>Car Rental is a user friendly Car booking application which enabling users to rent a car  without any issue and tension free.</p>
+        .blog-card-header {
+            overflow: hidden;
+            height: 350px;
+            position: relative;
+        }
 
-                    <p><b>Integrated booking method and made a user friendly ui that every one can understand in one view</b></p>
-                    <div style="display: flex;">
-                        <!-- First column -->
-                        <div style="width: 50%;">
-                            <button class="btn btn-primary" style="border-radius: 20px;"><a class="link" style="color: #ffffff;" href="https://github.com/nakulsejwar/car-rental-management-system">Github Repo</a></button>
-                        </div>
-                        <!-- Second column 
-                        <div style="width: 50%;">
-                            <button class="btn btn-primary" style="border-radius: 20px;"><a class="link" style="color: #ffffff;" href="https://github.com/nakulsejwar/Digital-Realm">Github Repo</a></button>
-                        </div>-->
-                    </div>
-                </div>
-            </div><!-- end of blog wrapper -->
-            <!-- blog-wrapper -->
-            <div class="blog-card">
-                <div class="blog-card-header">
-                    <img src="assets/imgs/img4.png" class="blog-card-img" alt="Nakul' portfolio website">
-                </div>
-                <div class="blog-card-body">
-                    <h5 class="blog-card-title">Hospital Management System</h6>
-                    <p>Hospital Management System is a user friendly management application featuring patient management, appointment scheduling, and medical records tracking</p>
+        .blog-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: 0.8s ease;
+        }
 
-                    <p><b>Implemented secure authentication, user roles, and data validation to enhance system reliability.</b></p>
-                    <div style="display: flex;">
-                        <!-- First column -->
-                        <div style="width: 50%;">
-                            <button class="btn btn-primary" style="border-radius: 20px;"><a class="link" style="color: #ffffff;" href="https://github.com/nakulsejwar/HMS-system">Github Repo</a></button>
-                        </div>
-                        <!-- Second column 
-                        <div style="width: 50%;">
-                            <button class="btn btn-primary" style="border-radius: 20px;"><a class="link" style="color: #ffffff;" href="https://github.com/nakulsejwar/Digital-Realm">Github Repo</a></button>
-                        </div>-->
-                    </div>
-                </div>
-            </div><!-- end of blog wrapper -->
+        .blog-card:hover .blog-card-img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
 
-            <!-- blog-wrapper -->
-            <div class="blog-card">
-                <div class="blog-card-header">
-                    <img src="assets/imgs/img5.png" class="blog-card-img" alt="Nakul' portfolio website">
-                </div>
-                <div class="blog-card-body">
-                    <h5 class="blog-card-title">Job Portal System</h6>
-                    <p>Job Portal System is a user friendly application enabling job postings, resume submissions, and application tracking and featuring employer and job seeker profiles and job recommendations</p>
+        .blog-card-body {
+            padding: 40px;
+        }
 
-                    <p><b>Implemented secure authentication and role-based access control to streamline the hiring process.</b></p>
-                    <div style="display: flex;">
-                        <!-- First column -->
-                        <div style="width: 50%;">
-                            <button class="btn btn-primary" style="border-radius: 20px;"><a class="link" style="color: #ffffff;" href="https://github.com/nakulsejwar/Job-Portal">Github Repo</a></button>
-                        </div>
-                        <!-- Second column 
-                        <div style="width: 50%;">
-                            <button class="btn btn-primary" style="border-radius: 20px;"><a class="link" style="color: #ffffff;" href="https://github.com/nakulsejwar/Digital-Realm">Github Repo</a></button>
-                        </div>-->
-                    </div>
-                </div>
-            </div><!-- end of blog wrapper -->
+        .blog-card-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
 
-            <!-- blog-wrapper -->
-            <div class="blog-card">
-                <div class="blog-card-header">
-                    <img src="assets/imgs/img3.png" class="blog-card-img" alt="Nakul' portfolio website">
-                </div>
-                <div class="blog-card-body">
-                    <h5 class="blog-card-title">Medical Management System</h6>
-                    <p>Medical Management System is a user friendly management application which helps users to manage his/her busniess model without any issue or manual paperwork</p>
+        .btn-check-live {
+            background: var(--accent);
+            color: white !important;
+            border-radius: 50px;
+            padding: 10px 25px;
+            font-weight: 700;
+            border: none;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
 
-                    <p><b>Integrated supplier model and product management system and made a user friendly ui that every one can understand in one view</b></p>
-                    <div style="display: flex;">
-                        <!-- First column -->
-                        <div style="width: 50%;">
-                            <button class="btn btn-primary" style="border-radius: 20px;"><a class="link" style="color: #ffffff;" href="https://github.com/nakulsejwar/Medical-management-system">Github Repo</a></button>
-                        </div>
-                        <!-- Second column 
-                        <div style="width: 50%;">
-                            <button class="btn btn-primary" style="border-radius: 20px;"><a class="link" style="color: #ffffff;" href="https://github.com/nakulsejwar/Digital-Realm">Github Repo</a></button>
-                        </div>-->
-                    </div>
-                </div>
-            </div><!-- end of blog wrapper -->
+        .btn-github {
+            background: transparent;
+            color: white !important;
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 10px 25px;
+            font-weight: 700;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
 
-        </div><!-- end of container -->
-    </section><!-- end of blog section -->
+        .btn-github:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #fff;
+        }
 
-  
+        /* --- Animations --- */
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-    <!-- contact section -->
-    <section class="section" id="contact" style="background-color: #695aa6;">
-        <div class="container text-center">
-            <p class="section-subtitle" style="color: white;">How can you communicate?</p>
-            <h6 class="section-title mb-5" style="color: white;">Reach Me Out</h6>
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-4 contact-margin">
-                    <a href="tel:+918303383499" >
-                        <button class="btn btn-lg my-font btn-light rounded">+91 8303383499</button>                    
-                    </a>
-                </div>
-                <div class="col-md-4 contact-margin">
-                    <a href="mailto:nakulsejwar02@gmail.com" >
-                        <button class="btn btn-lg my-font btn-light rounded">nakulsejwar02@gmail.com</button>                        
-                    </a>
-                </div>
-                <div class="col-md-4 contact-margin">
-                    <a href="#" >
-                        <button class="btn btn-lg my-font btn-light rounded">Main Road, Bhadohi</button>                        
-                    </a>
-                </div>
-                
-            </div><!-- end of row -->
-            
-        </div><!-- end of container -->
-    </section><!-- end of contact section -->
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 80px;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40">
 
-    <!-- footer -->
-    <div class="container">
-        <footer class="footer">       
-            <p class="mb-0">Copyright <script>document.write(new Date().getFullYear())</script> &copy; <a href="#">Nakul</a></p>
-            <div class="social-links text-right m-auto ml-sm-auto">
-                <a href="https://www.linkedin.com/in/nakulsejwar/" class="link"><i class="ti-linkedin"></i></a>
-                <a href="https://github.com/nakulsejwar/" class="link"><i class="ti-github"></i></a>
-                <a href="https://wa.me/918303383499" class="link"><img src="assets/imgs/whatsapp.svg" class="icon"></a>       
+    <div class="premium-bg"></div>
+    <canvas id="bg-canvas"></canvas>
+
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Nakul.</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent">
+                <span class="ti-menu" style="color: #fff;"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#about">ABOUT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#service">SERVICES</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#portfolio">PORTFOLIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#skills">STACK</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#experience">EXPERIENCE</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">CONTACT</a></li>
+                </ul>
             </div>
-        </footer>
-    </div> <!-- end of page footer -->
-	
-	<!-- core  -->
-    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
-    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+        </div>
+    </nav>
 
-    <!-- bootstrap 3 affix -->
-	<script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+    <section class="section mt-5" id="project">
+        <div class="container text-center">
+            <h6 class="reveal section-subtitle">Master Suite</h6>
+            <h2 class="reveal section-title">Python Projects</h2>
 
-    <!-- js -->
-    <script src="assets/js/nakul.js"></script>
+            <div class="blog-card reveal tilt-effect">
+                <div class="blog-card-header">
+                    <img src="assets/imgs/img1.png" class="blog-card-img" alt="Digital Realm">
+                </div>
+                <div class="blog-card-body">
+                    <h5 class="blog-card-title">Digital Realm</h5>
+                    <p class="text-muted">Digital realm is a user friendly Blogging application which enabling users to discover new ideas and thoughts of the people around</p>
+                    <p><b>Integrated Google & meta API to sign in using the social accounts and enabled otp system to retrieve account</b></p>
+                    
+                    <div class="mt-4">
+                        <a href="https://digital-realm.vercel.app/" class="btn btn-check-live mr-3">Check out live</a>
+                        <a href="https://github.com/nakulsejwar/Digital-Realm" class="btn btn-github">Github Repo</a>
+                    </div>
+                </div>
+            </div>
 
+            <div class="blog-card reveal tilt-effect">
+                <div class="blog-card-header">
+                    <img src="assets/imgs/img2.png" class="blog-card-img" alt="Car Rental">
+                </div>
+                <div class="blog-card-body">
+                    <h5 class="blog-card-title">Car Rental</h5>
+                    <p class="text-muted">Car Rental is a user friendly Car booking application which enabling users to rent a car without any issue and tension free.</p>
+                    <p><b>Integrated booking method and made a user friendly ui that every one can understand in one view</b></p>
+                    
+                    <div class="mt-4">
+                        <a href="https://github.com/nakulsejwar/car-rental-management-system" class="btn btn-check-live">Github Repo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card reveal tilt-effect">
+                <div class="blog-card-header">
+                    <img src="assets/imgs/img4.png" class="blog-card-img" alt="Hospital Management">
+                </div>
+                <div class="blog-card-body">
+                    <h5 class="blog-card-title">Hospital Management System</h5>
+                    <p class="text-muted">Hospital Management System is a user friendly management application featuring patient management, appointment scheduling, and medical records tracking</p>
+                    <p><b>Implemented secure authentication, user roles, and data validation to enhance system reliability.</b></p>
+                    
+                    <div class="mt-4">
+                        <a href="https://github.com/nakulsejwar/HMS-system" class="btn btn-check-live">Github Repo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card reveal tilt-effect">
+                <div class="blog-card-header">
+                    <img src="assets/imgs/img5.png" class="blog-card-img" alt="Job Portal">
+                </div>
+                <div class="blog-card-body">
+                    <h5 class="blog-card-title">Job Portal System</h5>
+                    <p class="text-muted">Job Portal System is a user friendly application enabling job postings, resume submissions, and application tracking and featuring employer and job seeker profiles and job recommendations</p>
+                    <p><b>Implemented secure authentication and role-based access control to streamline the hiring process.</b></p>
+                    
+                    <div class="mt-4">
+                        <a href="https://github.com/nakulsejwar/Job-Portal" class="btn btn-check-live">Github Repo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-card reveal tilt-effect">
+                <div class="blog-card-header">
+                    <img src="assets/imgs/img3.png" class="blog-card-img" alt="Medical Management">
+                </div>
+                <div class="blog-card-body">
+                    <h5 class="blog-card-title">Medical Management System</h5>
+                    <p class="text-muted">Medical Management System is a user friendly management application which helps users to manage his/her busniess model without any issue or manual paperwork</p>
+                    <p><b>Integrated supplier model and product management system and made a user friendly ui that every one can understand in one view</b></p>
+                    
+                    <div class="mt-4">
+                        <a href="https://github.com/nakulsejwar/Medical-management-system" class="btn btn-check-live">Github Repo</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section py-5 text-center" style="background: var(--accent);">
+        <div class="container">
+            <h3 class="font-weight-bold">Interested in these architectures?</h3>
+            <p>Always feel free to Contact & Hire me</p>
+            <a href="index.html#contact" class="btn btn-light rounded-pill px-5 py-3 font-weight-bold mt-3">Let's Connect</a>
+        </div>
+    </section>
+
+    <footer class="py-5" style="border-top: 1px solid var(--glass-border);">
+        <div class="container text-center">
+            <div class="social-links mb-4">
+                <a href="https://www.linkedin.com/in/nakulsejwar/" class="mx-3 text-white"><i class="ti-linkedin"></i></a>
+                <a href="https://github.com/nakulsejwar/" class="mx-3 text-white"><i class="ti-github"></i></a>
+            </div>
+            <p class="mb-0 text-muted small">&copy; <script>document.write(new Date().getFullYear())</script> Nakul Sejwar.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 1. Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            reveals.forEach(r => {
+                var windowHeight = window.innerHeight;
+                var elementTop = r.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) r.classList.add("active");
+            });
+        }
+        window.addEventListener("scroll", reveal);
+        $(document).ready(reveal);
+
+        // 2. 3D Tilt Engine - Refined for Subtlety
+        const cards = document.querySelectorAll('.tilt-effect');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                
+                // Calculate mouse position relative to center of card
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                /**
+                 * FIXES:
+                 * 1. Increased divisor (45) = less rotation, more professional.
+                 * 2. Removed translateY = no more shifting/jumping.
+                 */
+                const rotationX = -y / 45; 
+                const rotationY = x / 45;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                // Return to perfectly flat state without the vertical shift
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+            });
+        });
+
+        // 3. Simple Particles
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let pArray = Array.from({length: 50}, () => ({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 2,
+            vX: Math.random() * 0.4 - 0.2,
+            vY: Math.random() * 0.4 - 0.2
+        }));
+        function draw() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            ctx.fillStyle = "#695aa6";
+            pArray.forEach(p => {
+                p.x += p.vX; p.y += p.vY;
+                if(p.x < 0 || p.x > canvas.width) p.vX *= -1;
+                if(p.y < 0 || p.y > canvas.height) p.vY *= -1;
+                ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+    </script>
 </body>
 </html>

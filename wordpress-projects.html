@@ -1,432 +1,463 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Nakul">
-    <title>Nakul' port</title>
-    <!-- font icons -->
-    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
-    <!-- Bootstrap + main styles -->
-	<link rel="stylesheet" href="assets/css/nakul.css">
-</head>
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-
-    <!-- Page Navbar -->
-    <nav class="custom-navbar" data-spy="affix" data-offset-top="20" id="second-nav">
-        <div class="container">
-            <a class="logo" href="index.html">Nakul</a>         
-            <ul class="nav">
-                <li class="item">
-                    <a class="link" href="index.html">Home</a>
-                </li>
-                <li class="item">
-                    <a class="link" href="index.html#about">About</a>
-                </li>
-                <li class="item">
-                    <a class="link" href="index.html#portfolio">Portfolio</a>
-                </li>
-                <li class="item">
-                    <a class="link" href="index.html#experience">Experience</a>
-                </li>
-                <li class="item">
-                    <a class="link" href="index.html#contact">Contact</a>
-                </li>
-                
-            </ul>
-            <a href="javascript:void(0)" id="nav-toggle" class="hamburger hamburger--elastic">
-                <div class="hamburger-box">
-                  <div class="hamburger-inner" ></div>
-                </div>
-            </a>
-        </div>          
-    </nav><!-- End of Page Navbar -->
-
+    <title>WordPress Portfolio | Nakul Sejwar</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --accent: #695aa6;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+        }
 
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
 
+        /* --- Master Animation Layers --- */
+        #bg-canvas { position: fixed; top: 0; left: 0; z-index: -2; opacity: 0.3; pointer-events: none; }
+        .premium-bg-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% -20%, #1a1535 0%, var(--bg-dark) 80%);
+            z-index: -1; pointer-events: none;
+        }
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
+        /* --- Navigation --- */
+        .custom-navbar {
+            padding: 20px;
+            background: rgba(5, 5, 5, 0.8) !important;
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .navbar-brand { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #fff !important; }
+        .nav-link { font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; color: var(--text-muted) !important; }
 
+        /* --- Header Section --- */
+        .header-content { padding-top: 150px; padding-bottom: 80px; }
+        .section-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    <!-- portfolio section -->
-    <section class="section" id="portfolio" style="padding-top: 120px;">
-        <div class="container text-center">
-            <h6 class="section-title mb-6">Wordpress Websites</h6>
-		<!-- row -->
-            <div class="row">
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://cleanmartindia.com/" class="portfolio-card">
-                        <img src="assets/imgs/Cleanmartinternship.png" class="portfolio-card-img" alt="Nakul' portfolio website">    
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Cleanmart</h5>
-				<h6 style="color: rgb(77, 77, 77);">Designed during my internship at Interpret Media</h6>
-                                <p class="font-weight-normal">Click to view</p>
-                            </span>                         
-                        </span>                     
-                    </a>
-                </div>
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://drfaisal.ae/" class="portfolio-card">
-                        <img class="portfolio-card-img" src="assets/imgs/drfaisalinternship.png" class="img-responsive rounded" alt="Nakul' portfolio website">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4> Dr. Faisal</h5>
-				<h6 style="color: rgb(77, 77, 77);">Designed during my internship at Interpret Media</h6>
-                                <p class="font-weight-normal">Click to View</p>
-                            </span>                         
-                        </span>                         
-                    </a>
-                </div>
-                
-            </div><!-- end of row -->
-		<!-- row -->
-            <div class="row">
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://samhita.org//" class="portfolio-card">
-                        <img src="assets/imgs/samhitainternship.png" class="portfolio-card-img" alt="Nakul' portfolio website">    
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Samhita</h5>
-                                <h6 style="color: rgb(77, 77, 77);">Designed during my internship at Interpret Media</h6>
-                                <p class="font-weight-normal">Click to view</p>
-                            </span>                         
-                        </span>                     
-                    </a>
-                </div>
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://n1x10.com/" class="portfolio-card">
-                        <img class="portfolio-card-img" src="assets/imgs/n1x10.png" class="img-responsive rounded" alt="Nakul' portfolio website">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>N1X10</h5>
-				<h6 style="color: rgb(77, 77, 77);">Designed during my internship at Interpret Media</h6>
-                                <p class="font-weight-normal">Click to View</p>
-                            </span>                         
-                        </span>                         
-                    </a>
-                </div>
-                
-            </div><!-- end of row -->
-		<!-- row -->
-            <div class="row">
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://olaemployment.ca/" class="portfolio-card">
-                        <img src="assets/imgs/ola.png" class="portfolio-card-img" alt="Nakul' portfolio website">    
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Ola Employment Agency</h5>
-				<p class="font-weight-normal">Click to view</p>
-                            </span>                         
-                        </span>                     
-                    </a>
-                </div>
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://proactivesecuritycrown.com/" class="portfolio-card">
-                        <img class="portfolio-card-img" src="assets/imgs/proactive.png" class="img-responsive rounded" alt="Nakul' portfolio website">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Proactive Security Crown</h5>
-				<p class="font-weight-normal">Click to View</p>
-                            </span>                         
-                        </span>                         
-                    </a>
-                </div>
-                
-            </div><!-- end of row -->
-		<!-- row -->
-            <div class="row">
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://cmbprofiles.com/" class="portfolio-card">
-                        <img src="assets/imgs/cmb.png" class="portfolio-card-img" alt="Nakul' portfolio website">    
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Corporate Marriage Bureau</h5>
-                                <h6 style="color: rgb(77, 77, 77);">Designed during my internship at Interpret Media</h6>
-                                <p class="font-weight-normal">Click to view</p>
-                            </span>                         
-                        </span>                     
-                    </a>
-                </div>
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://vpack.interpretmedia.site//" class="portfolio-card">
-                        <img class="portfolio-card-img" src="assets/imgs/paxpro.png" class="img-responsive rounded" alt="Nakul' portfolio website">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Paxpro</h5>
-				<h6 style="color: rgb(77, 77, 77);">Designed during my internship at Interpret Media</h6>
-                                <p class="font-weight-normal">Click to View</p>
-                            </span>                         
-                        </span>                         
-                    </a>
-                </div>
-                
-            </div><!-- end of row -->
-		<!-- row -->
-            <div class="row">
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://rajeshenterprise.com/" class="portfolio-card">
-                        <img src="assets/imgs/rajesh.png" class="portfolio-card-img" alt="Nakul' portfolio website">    
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Rajesh Enterprises</h5>
-                                <p class="font-weight-normal">Click to view</p>
-                            </span>                         
-                        </span>                     
-                    </a>
-                </div>
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://rugsbyars.com/" class="portfolio-card">
-                        <img class="portfolio-card-img" src="assets/imgs/ars.png" class="img-responsive rounded" alt="Nakul' portfolio website">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Rug By ARS</h5>
-								<h6 style="color: rgb(77, 77, 77);">Designed and developed Home Page of this Website</h6>
-                                <p class="font-weight-normal">Click to View</p>
-                            </span>                         
-                        </span>                         
-                    </a>
-                </div>
-                
-            </div><!-- end of row -->
-		<!-- row -->
-            <div class="row">
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://ramshacarpets.ae/" class="portfolio-card">
-                        <img src="assets/imgs/ramshacarpets.png" class="portfolio-card-img" alt="Nakul' portfolio website">    
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Ramsha Carpets</h5>
-								<h6 style="color: rgb(77, 77, 77);">Designed some pages like Appointment, About, Contact etc. and added some dynamic functionalities using custom php scripts.</h6>
-                                <p class="font-weight-normal">Click to view</p>
-                            </span>                         
-                        </span>                     
-                    </a>
-                </div>
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://rugweavers.co/" class="portfolio-card">
-                        <img class="portfolio-card-img" src="assets/imgs/rugweavers.png" class="img-responsive rounded" alt="Nakul' portfolio website">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Rug Weavers</h5>
-                                <p class="font-weight-normal">Click to View</p>
-                            </span>                         
-                        </span>                         
-                    </a>
-                </div>
-                
-            </div><!-- end of row -->
-		<!-- row -->
-            <div class="row">
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://metrofashionstore.com/" class="portfolio-card">
-                        <img src="assets/imgs/metro.png" class="portfolio-card-img" alt="Nakul' portfolio website">    
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Metro Fashion Store</h5>
-                                <p class="font-weight-normal">Click to view</p>
-                            </span>                         
-                        </span>                     
-                    </a>
-                </div>
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://rugsmade.co/" class="portfolio-card">
-                        <img class="portfolio-card-img" src="assets/imgs/rugsmade.png" class="img-responsive rounded" alt="Nakul' portfolio website">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Rugs Made</h5>
-                                <p class="font-weight-normal">Click to View</p>
-                            </span>                         
-                        </span>                         
-                    </a>
-                </div>
-                
-            </div><!-- end of row -->
-			<!-- row -->
-            <div class="row">
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://kwcarpet.in/" class="portfolio-card">
-                        <img src="assets/imgs/kw.png" class="portfolio-card-img" alt="Nakul' portfolio website">    
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>KW Carpets</h5>
-                                <p class="font-weight-normal">Click to view</p>
-                            </span>                         
-                        </span>                     
-                    </a>
-                </div>
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://www.ityantatechsol.com/" class="portfolio-card">
-                        <img class="portfolio-card-img" src="assets/imgs/ityanta.png" class="img-responsive rounded" alt="Nakul' portfolio website">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Ityanta Technology and Solutions</h5>
-                                <p class="font-weight-normal">Click to View</p>
-                            </span>                         
-                        </span>                         
-                    </a>
-                </div>
-                
-            </div><!-- end of row -->
-		<!-- row -->
-            <div class="row">
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://mindyourrug.com/" class="portfolio-card">
-                        <img src="assets/imgs/wp9.png" class="portfolio-card-img" alt="Nakul' portfolio website">    
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Mind Your Rug</h5>
-                                <p class="font-weight-normal">Click to view</p>
-                            </span>                         
-                        </span>                     
-                    </a>
-                </div>
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://therugseason.com/" class="portfolio-card">
-                        <img class="portfolio-card-img" src="assets/imgs/wp8.png" class="img-responsive rounded" alt="Nakul' portfolio website">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>The Rug Season</h5>
-                                <p class="font-weight-normal">Click to View</p>
-                            </span>                         
-                        </span>                         
-                    </a>
-                </div>
-                
-            </div><!-- end of row -->
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://shamshicarpets.com/" class="portfolio-card">
-                        <img src="assets/imgs/wpimg1.png" class="portfolio-card-img" alt="Nakul' portfolio website">    
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Shamshi Carpets</h5>
-                                <p class="font-weight-normal">Click to view</p>
-                            </span>                         
-                        </span>                     
-                    </a>
-                </div>
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://exportsriyaz.com/" class="portfolio-card">
-                        <img class="portfolio-card-img" src="assets/imgs/wpimg2.png" class="img-responsive rounded" alt="Nakul' portfolio website">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Riyaz Exports</h5>
-                                <p class="font-weight-normal">Click to View</p>
-                            </span>                         
-                        </span>                         
-                    </a>
-                </div>
-                
-            </div><!-- end of row -->
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://namanrugs.com/" class="portfolio-card">
-                        <img src="assets/imgs/wpimg3.png" class="portfolio-card-img" alt="Nakul' portfolio website">    
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Naman Rugs</h5>
-                                <p class="font-weight-normal">Click to view</p>
-                            </span>                         
-                        </span>                     
-                    </a>
-                </div>
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://tncollections.co.in/" class="portfolio-card">
-                        <img class="portfolio-card-img" src="assets/imgs/wpimg4.png" class="img-responsive rounded" alt="Nakul' portfolio website">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>TN Collections</h5>
-                                <p class="font-weight-normal">Click to View</p>
-                            </span>                         
-                        </span>                         
-                    </a>
-                </div>
-                
-            </div><!-- end of row -->
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://bharatweavess.com/" class="portfolio-card">
-                        <img src="assets/imgs/wpimg5.png" class="portfolio-card-img" alt="Nakul' portfolio website">    
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Bharaweavess</h5>
-                                <p class="font-weight-normal">Click to view</p>
-                            </span>                         
-                        </span>                     
-                    </a>
-                </div>
-                <div class="col-md-6" id="wp-card">
-                    <a href="https://shahkarcarpet.com/" class="portfolio-card">
-                        <img class="portfolio-card-img" src="assets/imgs/wpimg6.png" class="img-responsive rounded" alt="Nakul' portfolio website">
-                        <span class="portfolio-card-overlay">
-                            <span class="portfolio-card-caption">
-                                <h4>Shahkar Carpet</h5>
-                                <p class="font-weight-normal">Click to View</p>
-                            </span>                         
-                        </span>                         
-                    </a>
-                </div>
-                
-            </div><!-- end of row -->
-        </div><!-- end of container -->
-    </section> <!-- end of portfolio section -->
-   
-    <!-- contact section -->
-    <section class="section" id="contact" style="background-color: #695aa6;">
-        <div class="container text-center">
-            <p class="section-subtitle" style="color: white;">How can you communicate?</p>
-            <h6 class="section-title mb-5" style="color: white;">Reach Me Out</h6>
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-4 contact-margin">
-                    <a href="tel:+918303383499" >
-                        <button class="btn btn-lg my-font btn-light rounded">+91 8303383499</button>                    
-                    </a>
-                </div>
-                <div class="col-md-4 contact-margin">
-                    <a href="mailto:nakulsejwar02@gmail.com" >
-                        <button class="btn btn-lg my-font btn-light rounded">nakulsejwar02@gmail.com</button>                        
-                    </a>
-                </div>
-                <div class="col-md-4 contact-margin">
-                    <a href="#" >
-                        <button class="btn btn-lg my-font btn-light rounded">Main Road, Bhadohi</button>                        
-                    </a>
-                </div>
-                
-            </div><!-- end of row -->
-            
-        </div><!-- end of container -->
-    </section><!-- end of contact section -->
+        /* --- Portfolio System (Fixed Overlays) --- */
+        .portfolio-card {
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            background: #000;
+            border: 1px solid var(--glass-border);
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+            margin-bottom: 30px;
+            display: block;
+        }
 
-    <!-- footer -->
-    <div class="container">
-        <footer class="footer">       
-            <p class="mb-0">Copyright <script>document.write(new Date().getFullYear())</script> &copy; <a href="#">Nakul</a></p>
-            <div class="social-links text-right m-auto ml-sm-auto">
-                <a href="https://www.linkedin.com/in/nakulsejwar/" class="link"><i class="ti-linkedin"></i></a>
-                <a href="https://github.com/nakulsejwar/" class="link"><i class="ti-github"></i></a>
-                <a href="https://wa.me/918303383499" class="link"><img src="assets/imgs/whatsapp.svg" class="icon"></a>       
+        .portfolio-card img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(100%); transition: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .portfolio-card-overlay {
+            position: absolute; inset: 0;
+            background: rgba(105, 90, 166, 0.95); /* Deep Brand Purple */
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; transition: 0.5s ease; padding: 30px; text-align: center; z-index: 2;
+        }
+
+        /* Hover States */
+        .portfolio-card:hover .portfolio-card-overlay { opacity: 1; }
+        .portfolio-card:hover img { filter: grayscale(0%); transform: scale(1.1); }
+
+        .portfolio-card-overlay h4 { color: #fff; font-weight: 800; font-size: 1.6rem; margin-bottom: 10px; transform: translateY(20px); transition: 0.4s ease; }
+        .portfolio-card-overlay h6 { color: rgba(255,255,255,0.9); font-size: 0.85rem; margin-bottom: 15px; transform: translateY(20px); transition: 0.4s ease 0.1s; }
+        .portfolio-card-overlay p { background: #fff; color: var(--accent); padding: 6px 20px; border-radius: 50px; font-weight: 800; font-size: 0.75rem; transform: translateY(20px); transition: 0.4s ease 0.2s; }
+
+        .portfolio-card:hover h4, .portfolio-card:hover h6, .portfolio-card:hover p { transform: translateY(0); }
+
+        /* --- Footer & CTA --- */
+        .contact-section { background: var(--accent); padding: 80px 0; border-radius: 50px 50px 0 0; margin-top: 50px;}
+    </style>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40">
+
+    <canvas id="bg-canvas"></canvas>
+    <div class="premium-bg-overlay"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Nakul.</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent">
+                <span class="ti-menu" style="color: #fff;"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#about">ABOUT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#service">SERVICES</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#portfolio">PORTFOLIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#skills">STACK</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#experience">EXPERIENCE</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">CONTACT</a></li>
+                </ul>
             </div>
-        </footer>
-    </div> <!-- end of page footer -->
-	
-	<!-- core  -->
-    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
-    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+        </div>
+    </nav>
 
-    <!-- bootstrap 3 affix -->
-	<script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+    <section class="section" id="portfolio" style="padding-top: 150px;">
+        <div class="container text-center">
+            <div class="reveal active mb-5">
+                <p style="color: var(--accent); letter-spacing: 5px; font-weight: 800; text-transform: uppercase; font-size: 0.8rem;">Professional Showcase</p>
+                <h2 class="section-title">WordPress Architecture</h2>
+                <p class="text-muted">Commanding 24+ unique enterprise deployments and high-end specialized themes.</p>
+            </div>
 
-    <!-- js -->
-    <script src="assets/js/nakul.js"></script>
+            <div class="row">
+                <div class="col-md-6 reveal">
+                    <a href="https://cleanmartindia.com/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/Cleanmartinternship.png" alt="Cleanmart">
+                        <div class="portfolio-card-overlay">
+                            <h4>Cleanmart</h4>
+                            <h6>Designed during internship at Interpret Media</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
 
+                <div class="col-md-6 reveal">
+                    <a href="https://drfaisal.ae/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/drfaisalinternship.png" alt="Dr Faisal">
+                        <div class="portfolio-card-overlay">
+                            <h4>Dr. Faisal</h4>
+                            <h6>Professional Medical Portfolio Deployment</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://samhita.org/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/samhitainternship.png" alt="Samhita">
+                        <div class="portfolio-card-overlay">
+                            <h4>Samhita</h4>
+                            <h6>Social Enterprise Theme Architecture</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://n1x10.com/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/n1x10.png" alt="N1X10">
+                        <div class="portfolio-card-overlay">
+                            <h4>N1X10</h4>
+                            <h6>High-Performance Custom Development</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://olaemployment.ca/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/ola.png" alt="Ola">
+                        <div class="portfolio-card-overlay">
+                            <h4>Ola Employment Agency</h4>
+                            <h6>Recruitment & Talent Management Suite</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://proactivesecuritycrown.com/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/proactive.png" alt="Proactive">
+                        <div class="portfolio-card-overlay">
+                            <h4>Proactive Security Crown</h4>
+                            <h6>Secure Infrastructure Interface</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://cmbprofiles.com/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/cmb.png" alt="CMB">
+                        <div class="portfolio-card-overlay">
+                            <h4>Corporate Marriage Bureau</h4>
+                            <h6>Designed during internship at Interpret Media</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://vpack.interpretmedia.site/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/paxpro.png" alt="Paxpro">
+                        <div class="portfolio-card-overlay">
+                            <h4>Paxpro</h4>
+                            <h6>Supply Chain Branding Solution</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://rajeshenterprise.com/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/rajesh.png" alt="Rajesh">
+                        <div class="portfolio-card-overlay">
+                            <h4>Rajesh Enterprises</h4>
+                            <h6>Industrial Commerce Portal</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://rugsbyars.com/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/ars.png" alt="ARS">
+                        <div class="portfolio-card-overlay">
+                            <h4>Rug By ARS</h4>
+                            <h6>Bespoke Homepage & UI Engineering</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://ramshacarpets.ae/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/ramshacarpets.png" alt="Ramsha">
+                        <div class="portfolio-card-overlay">
+                            <h4>Ramsha Carpets</h4>
+                            <h6>PHP-Driven Dynamic Functionalities</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://rugweavers.co/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/rugweavers.png" alt="Rug Weavers">
+                        <div class="portfolio-card-overlay">
+                            <h4>Rug Weavers</h4>
+                            <h6>Full-Stack Textile E-Commerce</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://metrofashionstore.com/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/metro.png" alt="Metro">
+                        <div class="portfolio-card-overlay">
+                            <h4>Metro Fashion Store</h4>
+                            <h6>Apparel Showcase Suite</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://rugsmade.co/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/rugsmade.png" alt="Rugs Made">
+                        <div class="portfolio-card-overlay">
+                            <h4>Rugs Made</h4>
+                            <h6>Specialized Catalog Development</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://kwcarpet.in/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/kw.png" alt="KW">
+                        <div class="portfolio-card-overlay">
+                            <h4>KW Carpets</h4>
+                            <h6>Export & Manufacturing Portal</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://www.ityantatechsol.com/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/ityanta.png" alt="Ityanta">
+                        <div class="portfolio-card-overlay">
+                            <h4>Ityanta Tech Solutions</h4>
+                            <h6>Corporate Technology Portfolio</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://mindyourrug.com/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/wp9.png" alt="Mind Your Rug">
+                        <div class="portfolio-card-overlay">
+                            <h4>Mind Your Rug</h4>
+                            <h6>Interactive Product Suite</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://therugseason.com/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/wp8.png" alt="The Rug Season">
+                        <div class="portfolio-card-overlay">
+                            <h4>The Rug Season</h4>
+                            <h6>Seasonal Collection Portal</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://shamshicarpets.com/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/wpimg1.png" alt="Shamshi">
+                        <div class="portfolio-card-overlay">
+                            <h4>Shamshi Carpets</h4>
+                            <h6>Luxury Textile Presentation</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://exportsriyaz.com/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/wpimg2.png" alt="Riyaz">
+                        <div class="portfolio-card-overlay">
+                            <h4>Riyaz Exports</h4>
+                            <h6>B2B Global Trade Infrastructure</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://namanrugs.com/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/wpimg3.png" alt="Naman Rugs">
+                        <div class="portfolio-card-overlay">
+                            <h4>Naman Rugs</h4>
+                            <h6>Design & Manufacturing Showcase</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://tncollections.co.in/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/wpimg4.png" alt="TN Collections">
+                        <div class="portfolio-card-overlay">
+                            <h4>TN Collections</h4>
+                            <h6>Premium Artisan Collection</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://bharatweavess.com/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/wpimg5.png" alt="Bharat Weavess">
+                        <div class="portfolio-card-overlay">
+                            <h4>Bharat Weavess</h4>
+                            <h6>Handloom Heritage Portal</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 reveal">
+                    <a href="https://shahkarcarpet.com/" class="portfolio-card tilt-effect">
+                        <img src="assets/imgs/wpimg6.png" alt="Shahkar">
+                        <div class="portfolio-card-overlay">
+                            <h4>Shahkar Carpet</h4>
+                            <h6>Global Textile Architecture</h6>
+                            <p>VISIT ARCHITECTURE</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section text-center text-white" id="contact">
+        <div class="container reveal">
+            <h2 class="font-weight-bold mb-4">Elevate Your Digital Presence</h2>
+            <p class="mb-5">Specializing in enterprise architectures and high-end WordPress solutions.</p>
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-3"><a href="tel:+918303383499" class="btn btn-light btn-block rounded-pill py-3 font-weight-bold">+91 8303383499</a></div>
+                <div class="col-md-4 mb-3"><a href="mailto:nakulsejwar02@gmail.com" class="btn btn-light btn-block rounded-pill py-3 font-weight-bold">Email Nakul</a></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-5 text-center">
+        <p class="text-muted small">&copy; <script>document.write(new Date().getFullYear())</script> Nakul Sejwar. Excellence Built-in.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // --- 1. Background Engine ---
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        let particles = Array.from({length: 60}, () => ({
+            x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+            vx: Math.random() * 0.4 - 0.2, vy: Math.random() * 0.4 - 0.2, size: Math.random() * 2
+        }));
+        function animate() {
+            ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle = "#695aa6";
+            particles.forEach(p => {
+                p.x += p.vx; p.y += p.vy;
+                if(p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if(p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // --- 2. 3D Tilt Logic ---
+        const cards = document.querySelectorAll('.tilt-effect');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                card.style.transform = `perspective(1000px) rotateX(${-y / 15}deg) rotateY(${x / 15}deg) translateY(-10px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)`;
+            });
+        });
+
+        // --- 3. Intersection Observer ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
-
-
-
