@@ -6,24 +6,27 @@
     <meta name="author" content="Nakul">
     <title>Python Projects | Nakul Sejwar</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     
     <style>
         :root {
-            --bg-dark: #050505;
-            --accent: #695aa6;
+            --bg-dark: #030305;
+            --bg-surface: rgba(255, 255, 255, 0.02);
+            --accent: #8b5cf6;
+            --secondary: #695aa6;
             --glass: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.08);
-            --text-main: #ffffff;
-            --text-muted: #a0a0a0;
+            --glass-border-hover: rgba(255, 255, 255, 0.2);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
         }
 
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Outfit', sans-serif;
             scroll-behavior: smooth;
             overflow-x: hidden;
         }
@@ -32,114 +35,252 @@
         .premium-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% -20%, #1a1535 0%, var(--bg-dark) 80%);
+            background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, var(--bg-dark) 70%);
             z-index: -1;
         }
 
         #bg-canvas {
             position: fixed;
-            top: 0; left: 0; z-index: -1; opacity: 0.3;
+            top: 0; left: 0; z-index: -1; opacity: 0.4;
         }
 
         /* --- Navigation --- */
         .custom-navbar {
             padding: 20px;
-            background: rgba(5, 5, 5, 0.8) !important;
-            backdrop-filter: blur(15px);
+            background: rgba(3, 3, 5, 0.7) !important;
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
         }
-        .navbar-brand { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #fff !important; }
+        .navbar-brand { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #fff !important; letter-spacing: 1px; }
+        .nav-link { font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s; }
+        .nav-link:hover { color: var(--accent) !important; }
 
-        /* --- Project Cards (Extraordinary Style) --- */
+        /* --- Project Grid Layout --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        /* --- Project Cards (Text-focused Redesign) --- */
         .blog-card {
-            background: var(--glass);
+            background: var(--bg-surface);
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(15px);
-            border-radius: 30px;
-            margin-bottom: 60px;
+            border-radius: 24px;
+            position: relative;
             overflow: hidden;
-            transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: left;
             display: flex;
             flex-direction: column;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Glowing effect behind card */
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 100%;
+            background: linear-gradient(180deg, rgba(139,92,246,0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: -1;
         }
 
         .blog-card:hover {
-            border-color: var(--accent);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            transform: translateY(-8px);
+            border-color: var(--glass-border-hover);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 30px rgba(139,92,246,0.1);
         }
 
-        .blog-card-header {
-            overflow: hidden;
-            height: 350px;
-            position: relative;
-        }
-
-        .blog-card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%);
-            transition: 0.8s ease;
-        }
-
-        .blog-card:hover .blog-card-img {
-            filter: grayscale(0%);
-            transform: scale(1.05);
+        .blog-card:hover::before {
+            opacity: 1;
         }
 
         .blog-card-body {
-            padding: 40px;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .project-number {
+            color: var(--accent);
+            letter-spacing: 2px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            background: rgba(139, 92, 246, 0.1);
+            padding: 6px 14px;
+            border-radius: 50px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            text-transform: uppercase;
         }
 
         .blog-card-title {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
-            font-size: 2rem;
-            color: var(--accent);
-            margin-bottom: 20px;
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            transition: color 0.3s ease;
+        }
+
+        .blog-card:hover .blog-card-title {
+            color: #a78bfa;
+        }
+
+        .blog-card-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        /* Tech Stack Tags */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .tech-stack span {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #cbd5e1;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 5px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        .blog-card:hover .tech-stack span {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: auto;
         }
 
         .btn-check-live {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
             color: white !important;
-            border-radius: 50px;
-            padding: 10px 25px;
-            font-weight: 700;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-weight: 600;
             border: none;
             transition: 0.3s;
-            text-transform: uppercase;
             font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+            text-decoration: none;
+        }
+
+        .btn-check-live:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+            filter: brightness(1.1);
+            text-decoration: none;
         }
 
         .btn-github {
             background: transparent;
             color: white !important;
             border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            padding: 10px 25px;
-            font-weight: 700;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-weight: 600;
             transition: 0.3s;
-            text-transform: uppercase;
             font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
         }
 
         .btn-github:hover {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.08);
             border-color: #fff;
+            transform: translateY(-2px);
+            text-decoration: none;
         }
 
         /* --- Animations --- */
-        .reveal { opacity: 0; transform: translateY(50px); transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         .section-title {
+            font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
             font-weight: 800;
-            margin-bottom: 80px;
-            background: linear-gradient(to right, #fff, var(--accent));
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #fff, #a78bfa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        .project-count {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer & Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(105,90,166,0.1));
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 80px 0;
+            margin-top: 60px;
+        }
+
+        footer { border-top: 1px solid var(--glass-border); background: var(--bg-dark); }
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+        .social-links a:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            color: #fff !important;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .section-title { font-size: 2.5rem; }
+            .projects-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -168,105 +309,324 @@
         </div>
     </nav>
 
-    <section class="section mt-5" id="project" style="padding-top: 100px;">
+    <section class="section mt-5" id="project" style="padding-top: 100px; padding-bottom: 40px;">
         <div class="container text-center">
             <p style="color: var(--accent); letter-spacing: 5px; font-weight: 800; text-transform: uppercase; font-size: 0.8rem;">Master Suite</p>
-            <h2 class="reveal section-title">Python Projects</h2>
+            <h2 class="reveal section-title">Selected Projects</h2>
+            <p class="reveal project-count">17 selected projects from my public GitHub portfolio — focused on AI, backend engineering, APIs, and real-world applications.</p>
 
-            <div class="blog-card reveal tilt-effect">
-                <div class="blog-card-header">
-                    <img src="assets/imgs/img1.png" class="blog-card-img" alt="Digital Realm">
-                </div>
-                <div class="blog-card-body">
-                    <h5 class="blog-card-title">Digital Realm</h5>
-                    <p class="text-muted">Digital realm is a user friendly Blogging application which enabling users to discover new ideas and thoughts of the people around</p>
-                    <p><b>Integrated Google & meta API to sign in using the social accounts and enabled otp system to retrieve account</b></p>
-                    
-                    <div class="mt-4">
-                        <a href="https://digital-realm.vercel.app/" class="btn btn-check-live mr-3">Check out live</a>
-                        <a href="https://github.com/nakulsejwar/Digital-Realm" class="btn btn-github">Github Repo</a>
+            <div class="projects-grid text-left">
+
+                <!-- Project 01 -->
+                <div class="blog-card reveal tilt-effect">
+                    <div class="blog-card-body">
+                        <div class="project-meta">
+                            <span class="project-number">Project 01</span>
+                        </div>
+                        <h5 class="blog-card-title">LumaForge — AI Landing Page Studio</h5>
+                        <p class="blog-card-desc">An AI-powered landing page studio that transforms natural-language prompts into structured, editable landing pages. Includes visual editing, responsive desktop/mobile previews, design-direction controls, AI and stock image options, motion settings, 3D depth modes, and a complete generate → edit → publish workflow.</p>
+                        <div class="tech-stack">
+                            <span>AI</span><span>Next.js</span><span>Landing Page Generator</span><span>Visual Editor</span><span>Responsive Design</span><span>SaaS</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://landingpage-kwyp.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-check-live"><i class="ti-world"></i> Live Demo</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="blog-card reveal tilt-effect">
-                <div class="blog-card-header">
-                    <img src="assets/imgs/img2.png" class="blog-card-img" alt="Car Rental">
-                </div>
-                <div class="blog-card-body">
-                    <h5 class="blog-card-title">Car Rental</h5>
-                    <p class="text-muted">Car Rental is a user friendly Car booking application which enabling users to rent a car without any issue and tension free.</p>
-                    <p><b>Integrated booking method and made a user friendly ui that every one can understand in one view</b></p>
-                    
-                    <div class="mt-4">
-                        <a href="https://github.com/nakulsejwar/car-rental-management-system" class="btn btn-check-live">Github Repo</a>
+                <!-- Project 02 -->
+                <div class="blog-card reveal tilt-effect">
+                    <div class="blog-card-body">
+                        <div class="project-meta">
+                            <span class="project-number">Project 02</span>
+                        </div>
+                        <h5 class="blog-card-title">Zaplyn — Intelligent Commerce Platform</h5>
+                        <p class="blog-card-desc">An intelligent commerce platform for creators, founders, and modern businesses to launch stores, sell physical and digital products, offer services, and accept payments through shareable links. Supports product management, inventory, shipping, variants, digital downloads, service bookings, payments, subscriptions, and multiple shops.</p>
+                        <div class="tech-stack">
+                            <span>Django</span><span>Next.js</span><span>AI Agents</span><span>PostgreSQL</span><span>Redis</span><span>Stripe</span><span>AWS</span><span>REST APIs</span><span>E-commerce</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://zaplyn.link/" target="_blank" rel="noopener noreferrer" class="btn btn-check-live"><i class="ti-world"></i> Live Platform</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="blog-card reveal tilt-effect">
-                <div class="blog-card-header">
-                    <img src="assets/imgs/img4.png" class="blog-card-img" alt="Hospital Management">
-                </div>
-                <div class="blog-card-body">
-                    <h5 class="blog-card-title">Hospital Management System</h5>
-                    <p class="text-muted">Hospital Management System is a user friendly management application featuring patient management, appointment scheduling, and medical records tracking</p>
-                    <p><b>Implemented secure authentication, user roles, and data validation to enhance system reliability.</b></p>
-                    
-                    <div class="mt-4">
-                        <a href="https://github.com/nakulsejwar/HMS-system" class="btn btn-check-live">Github Repo</a>
+
+                <!-- Project 03 -->
+                <div class="blog-card reveal tilt-effect">
+                    <div class="blog-card-body">
+                        <div class="project-meta">
+                            <span class="project-number">Project 03</span>
+                        </div>
+                        <h5 class="blog-card-title">HEALOSBENCH — LLM Evaluation Platform</h5>
+                        <p class="blog-card-desc">An LLM evaluation platform for structured extraction workflows, built around schema validation, automated evaluation, comparison, and reliable AI testing.</p>
+                        <div class="tech-stack">
+                            <span>TypeScript</span><span>Next.js</span><span>LLM Evaluation</span><span>PostgreSQL</span><span>Turborepo</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/nakulsejwar/test-evals" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="blog-card reveal tilt-effect">
-                <div class="blog-card-header">
-                    <img src="assets/imgs/img5.png" class="blog-card-img" alt="Job Portal">
-                </div>
-                <div class="blog-card-body">
-                    <h5 class="blog-card-title">Job Portal System</h5>
-                    <p class="text-muted">Job Portal System is a user friendly application enabling job postings, resume submissions, and application tracking and featuring employer and job seeker profiles and job recommendations</p>
-                    <p><b>Implemented secure authentication and role-based access control to streamline the hiring process.</b></p>
-                    
-                    <div class="mt-4">
-                        <a href="https://github.com/nakulsejwar/Job-Portal" class="btn btn-check-live">Github Repo</a>
+                <!-- Project 04 -->
+                <div class="blog-card reveal tilt-effect">
+                    <div class="blog-card-body">
+                        <div class="project-meta">
+                            <span class="project-number">Project 04</span>
+                        </div>
+                        <h5 class="blog-card-title">Real-Time Collaborative Workspace</h5>
+                        <p class="blog-card-desc">A production-style collaborative backend supporting workspaces, projects, real-time communication, background jobs, authentication, and API documentation.</p>
+                        <div class="tech-stack">
+                            <span>Django</span><span>DRF</span><span>WebSockets</span><span>Redis</span><span>Celery</span><span>Docker</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/nakulsejwar/Workspace-Backend" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="blog-card reveal tilt-effect">
-                <div class="blog-card-header">
-                    <img src="assets/imgs/img3.png" class="blog-card-img" alt="Medical Management">
-                </div>
-                <div class="blog-card-body">
-                    <h5 class="blog-card-title">Medical Management System</h5>
-                    <p class="text-muted">Medical Management System is a user friendly management application which helps users to manage his/her busniess model without any issue or manual paperwork</p>
-                    <p><b>Integrated supplier model and product management system and made a user friendly ui that every one can understand in one view</b></p>
-                    
-                    <div class="mt-4">
-                        <a href="https://github.com/nakulsejwar/Medical-management-system" class="btn btn-check-live">Github Repo</a>
+                <!-- Project 05 -->
+                <div class="blog-card reveal tilt-effect">
+                    <div class="blog-card-body">
+                        <div class="project-meta">
+                            <span class="project-number">Project 05</span>
+                        </div>
+                        <h5 class="blog-card-title">FuelRoute</h5>
+                        <p class="blog-card-desc">A route and fuel-planning application that combines travel routes with fuel-station discovery to help users plan more efficient journeys.</p>
+                        <div class="tech-stack">
+                            <span>Python</span><span>Django</span><span>Maps</span><span>Route Planning</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/nakulsejwar/fuelroute" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+                <!-- Project 06 -->
+                <div class="blog-card reveal tilt-effect">
+                    <div class="blog-card-body">
+                        <div class="project-meta">
+                            <span class="project-number">Project 06</span>
+                        </div>
+                        <h5 class="blog-card-title">Language Learning Chatbot</h5>
+                        <p class="blog-card-desc">An AI-powered language learning application with guided conversations, grammar correction, mistake tracking, and learner feedback.</p>
+                        <div class="tech-stack">
+                            <span>Python</span><span>Django</span><span>Hugging Face</span><span>NLP</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/nakulsejwar/language_bot" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 07 -->
+                <div class="blog-card reveal tilt-effect">
+                    <div class="blog-card-body">
+                        <div class="project-meta">
+                            <span class="project-number">Project 07</span>
+                        </div>
+                        <h5 class="blog-card-title">Details Extraction</h5>
+                        <p class="blog-card-desc">A document-focused extraction application designed to capture structured information from uploaded content.</p>
+                        <div class="tech-stack">
+                            <span>Python</span><span>Document Processing</span><span>Web App</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/nakulsejwar/details-extraction" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 08 -->
+                <div class="blog-card reveal tilt-effect">
+                    <div class="blog-card-body">
+                        <div class="project-meta">
+                            <span class="project-number">Project 08</span>
+                        </div>
+                        <h5 class="blog-card-title">Logistics Management System</h5>
+                        <p class="blog-card-desc">A logistics-oriented management application for handling operational data and workflows through a Python-based backend.</p>
+                        <div class="tech-stack">
+                            <span>Python</span><span>Django</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/nakulsejwar/logistic-system" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 09 -->
+                <div class="blog-card reveal tilt-effect">
+                    <div class="blog-card-body">
+                        <div class="project-meta">
+                            <span class="project-number">Project 09</span>
+                        </div>
+                        <h5 class="blog-card-title">Progace React App</h5>
+                        <p class="blog-card-desc">A React-based application demonstrating component-driven frontend development and interactive application workflows.</p>
+                        <div class="tech-stack">
+                            <span>React</span><span>TypeScript</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/nakulsejwar/progace-react-app" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 10 -->
+                <div class="blog-card reveal tilt-effect">
+                    <div class="blog-card-body">
+                        <div class="project-meta">
+                            <span class="project-number">Project 10</span>
+                        </div>
+                        <h5 class="blog-card-title">Employee Management System</h5>
+                        <p class="blog-card-desc">A web application for managing employee information and common workforce-management operations.</p>
+                        <div class="tech-stack">
+                            <span>JavaScript</span><span>Web App</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/nakulsejwar/Employee_Management_System" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 11 -->
+                <div class="blog-card reveal tilt-effect">
+                    <div class="blog-card-body">
+                        <div class="project-meta">
+                            <span class="project-number">Project 11</span>
+                        </div>
+                        <h5 class="blog-card-title">News Application</h5>
+                        <p class="blog-card-desc">A news-focused application for consuming and presenting current news content through a clean application interface.</p>
+                        <div class="tech-stack">
+                            <span>Python</span><span>Web App</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/nakulsejwar/news-app" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 12 -->
+                <div class="blog-card reveal tilt-effect">
+                    <div class="blog-card-body">
+                        <div class="project-meta">
+                            <span class="project-number">Project 12</span>
+                        </div>
+                        <h5 class="blog-card-title">News API</h5>
+                        <p class="blog-card-desc">A backend/API project focused on serving news-related data for application consumption.</p>
+                        <div class="tech-stack">
+                            <span>Python</span><span>API Development</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/nakulsejwar/news-api" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 13 -->
+                <div class="blog-card reveal tilt-effect">
+                    <div class="blog-card-body">
+                        <div class="project-meta">
+                            <span class="project-number">Project 13</span>
+                        </div>
+                        <h5 class="blog-card-title">DCC Plugin</h5>
+                        <p class="blog-card-desc">A Python plugin project demonstrating extensible application functionality through a dedicated plugin architecture.</p>
+                        <div class="tech-stack">
+                            <span>Python</span><span>Plugin Development</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/nakulsejwar/dcc-plugin" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 14 -->
+                <div class="blog-card reveal tilt-effect">
+                    <div class="blog-card-body">
+                        <div class="project-meta">
+                            <span class="project-number">Project 14</span>
+                        </div>
+                        <h5 class="blog-card-title">Library Management API</h5>
+                        <p class="blog-card-desc">A backend API for library operations, with asynchronous processing for background tasks and report generation.</p>
+                        <div class="tech-stack">
+                            <span>Django</span><span>DRF</span><span>Celery</span><span>Redis</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/nakulsejwar/library-management-api" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 15 -->
+                <div class="blog-card reveal tilt-effect">
+                    <div class="blog-card-body">
+                        <div class="project-meta">
+                            <span class="project-number">Project 15</span>
+                        </div>
+                        <h5 class="blog-card-title">Job Portal System</h5>
+                        <p class="blog-card-desc">A recruitment platform supporting job postings, resume submissions, applications, profiles, recommendations, authentication, and role-based access.</p>
+                        <div class="tech-stack">
+                            <span>Django</span><span>Authentication</span><span>RBAC</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/nakulsejwar/Job-Portal" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 16 -->
+                <div class="blog-card reveal tilt-effect">
+                    <div class="blog-card-body">
+                        <div class="project-meta">
+                            <span class="project-number">Project 16</span>
+                        </div>
+                        <h5 class="blog-card-title">Hospital Management System</h5>
+                        <p class="blog-card-desc">A hospital-management application covering patient management, appointments, medical records, authentication, roles, and validation.</p>
+                        <div class="tech-stack">
+                            <span>Django</span><span>Authentication</span><span>Role-Based Access</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/nakulsejwar/HMS-system" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 17 -->
+                <div class="blog-card reveal tilt-effect">
+                    <div class="blog-card-body">
+                        <div class="project-meta">
+                            <span class="project-number">Project 17</span>
+                        </div>
+                        <h5 class="blog-card-title">Digital Realm</h5>
+                        <p class="blog-card-desc">A blogging community application where users can discover and share ideas, with social sign-in and OTP-based account recovery.</p>
+                        <div class="tech-stack">
+                            <span>Django</span><span>Google/Meta APIs</span><span>OTP Auth</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://digital-realm.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-check-live"><i class="ti-world"></i> Live Demo</a>
+                            <a href="https://github.com/nakulsejwar/Digital-Realm" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
-    <section class="section py-5 text-center" style="background: var(--accent);">
+    <section class="contact-section text-center">
         <div class="container">
-            <h3 class="font-weight-bold">Interested in these architectures?</h3>
-            <p>Always feel free to Contact & Hire me</p>
-            <a href="index.html#contact" class="btn btn-light rounded-pill px-5 py-3 font-weight-bold mt-3">Let's Connect</a>
+            <h3 class="font-family-playfair font-weight-bold" style="color: #fff; font-size: 2.5rem; margin-bottom: 20px;">Interested in these architectures?</h3>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px;">Always feel free to Contact & Hire me for your next big project.</p>
+            <a href="index.html#contact" class="btn btn-check-live px-5 py-3" style="font-size: 1rem; border-radius: 50px;">Let's Connect</a>
         </div>
     </section>
 
-    <footer class="py-5" style="border-top: 1px solid var(--glass-border);">
+    <footer class="py-5">
         <div class="container text-center">
             <div class="social-links mb-4">
-                <a href="https://www.linkedin.com/in/nakulsejwar/" class="mx-3 text-white"><i class="ti-linkedin"></i></a>
-                <a href="https://github.com/nakulsejwar/" class="mx-3 text-white"><i class="ti-github"></i></a>
+                <a href="https://www.linkedin.com/in/nakulsejwar/" class="mx-3 text-white" target="_blank" rel="noopener noreferrer"><i class="ti-linkedin"></i></a>
+                <a href="https://github.com/nakulsejwar/" class="mx-3 text-white" target="_blank" rel="noopener noreferrer"><i class="ti-github"></i></a>
             </div>
-            <p class="mb-0 text-muted small">&copy; <script>document.write(new Date().getFullYear())</script> Nakul Sejwar.</p>
+            <p class="mb-0 text-muted small">&copy; <script>document.write(new Date().getFullYear())</script> Nakul Sejwar. Designed meticulously.</p>
         </div>
     </footer>
 
@@ -296,20 +656,16 @@
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
                 
-                /**
-                 * FIXES:
-                 * 1. Increased divisor (45) = less rotation, more professional.
-                 * 2. Removed translateY = no more shifting/jumping.
-                 */
-                const rotationX = -y / 45; 
-                const rotationY = x / 45;
+                // Gentle tilt rotation
+                const rotationX = -y / 50; 
+                const rotationY = x / 50;
 
-                card.style.transform = `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+                card.style.transform = `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg) translateY(-8px)`;
             });
 
             card.addEventListener('mouseleave', () => {
-                // Return to perfectly flat state without the vertical shift
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+                // Return to perfectly flat state with smooth transition
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)`;
             });
         });
 
@@ -318,16 +674,23 @@
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        let pArray = Array.from({length: 50}, () => ({
+        let pArray = Array.from({length: 40}, () => ({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
             size: Math.random() * 2,
-            vX: Math.random() * 0.4 - 0.2,
-            vY: Math.random() * 0.4 - 0.2
+            vX: Math.random() * 0.3 - 0.15,
+            vY: Math.random() * 0.3 - 0.15
         }));
+        
+        // Handle window resize for particles
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
         function draw() {
             ctx.clearRect(0,0,canvas.width,canvas.height);
-            ctx.fillStyle = "#695aa6";
+            ctx.fillStyle = "#8b5cf6"; // Match accent color
             pArray.forEach(p => {
                 p.x += p.vX; p.y += p.vY;
                 if(p.x < 0 || p.x > canvas.width) p.vX *= -1;

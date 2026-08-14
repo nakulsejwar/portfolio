@@ -1,55 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Nakul">
     <title>WordPress Portfolio | Nakul Sejwar</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    
+
     <style>
         :root {
-            --bg-dark: #050505;
-            --accent: #695aa6;
+            --bg-dark: #030305;
+            --bg-surface: rgba(255, 255, 255, 0.02);
+            --accent: #8b5cf6;
+            --secondary: #695aa6;
             --glass: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.08);
-            --text-main: #ffffff;
-            --text-muted: #a0a0a0;
+            --glass-border-hover: rgba(255, 255, 255, 0.2);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
         }
 
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Outfit', sans-serif;
             scroll-behavior: smooth;
             overflow-x: hidden;
         }
 
         /* --- Master Animation Layers --- */
-        #bg-canvas { position: fixed; top: 0; left: 0; z-index: -2; opacity: 0.3; pointer-events: none; }
-        .premium-bg-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% -20%, #1a1535 0%, var(--bg-dark) 80%);
-            z-index: -1; pointer-events: none;
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -2;
+            opacity: 0.3;
+            pointer-events: none;
         }
-        .reveal { opacity: 0; transform: translateY(50px); transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .premium-bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% -20%, #1e1b4b 0%, var(--bg-dark) 80%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* --- Navigation --- */
         .custom-navbar {
             padding: 20px;
-            background: rgba(5, 5, 5, 0.8) !important;
-            backdrop-filter: blur(15px);
+            background: rgba(3, 3, 5, 0.7) !important;
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
         }
-        .navbar-brand { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #fff !important; }
-        .nav-link { font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; color: var(--text-muted) !important; }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff !important;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: var(--text-muted) !important;
+        }
 
         /* --- Header Section --- */
-        .header-content { padding-top: 150px; padding-bottom: 80px; }
+        .header-content {
+            padding-top: 150px;
+            padding-bottom: 80px;
+        }
+
         .section-title {
             font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 800;
@@ -62,41 +106,103 @@
         /* --- Portfolio System (Fixed Overlays) --- */
         .portfolio-card {
             position: relative;
-            border-radius: 25px;
+            border-radius: 24px;
             overflow: hidden;
             aspect-ratio: 16/10;
-            background: #000;
+            background: var(--bg-surface);
             border: 1px solid var(--glass-border);
-            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             transform-style: preserve-3d;
             margin-bottom: 30px;
             display: block;
         }
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 100%;
+            background: linear-gradient(180deg, rgba(139,92,246,0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
 
         .portfolio-card img {
-            width: 100%; height: 100%; object-fit: cover;
-            filter: grayscale(100%); transition: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .portfolio-card-overlay {
-            position: absolute; inset: 0;
-            background: rgba(105, 90, 166, 0.95); /* Deep Brand Purple */
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            opacity: 0; transition: 0.5s ease; padding: 30px; text-align: center; z-index: 2;
+            position: absolute;
+            inset: 0;
+            background: rgba(3, 3, 5, 0.85);
+            backdrop-filter: blur(8px);
+            /* Deep Brand Purple */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.5s ease;
+            padding: 30px;
+            text-align: center;
+            z-index: 2;
         }
 
         /* Hover States */
-        .portfolio-card:hover .portfolio-card-overlay { opacity: 1; }
-        .portfolio-card:hover img { filter: grayscale(0%); transform: scale(1.1); }
+        .portfolio-card:hover .portfolio-card-overlay {
+            opacity: 1;
+        }
 
-        .portfolio-card-overlay h4 { color: #fff; font-weight: 800; font-size: 1.6rem; margin-bottom: 10px; transform: translateY(20px); transition: 0.4s ease; }
-        .portfolio-card-overlay h6 { color: rgba(255,255,255,0.9); font-size: 0.85rem; margin-bottom: 15px; transform: translateY(20px); transition: 0.4s ease 0.1s; }
-        .portfolio-card-overlay p { background: #fff; color: var(--accent); padding: 6px 20px; border-radius: 50px; font-weight: 800; font-size: 0.75rem; transform: translateY(20px); transition: 0.4s ease 0.2s; }
+        .portfolio-card:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
 
-        .portfolio-card:hover h4, .portfolio-card:hover h6, .portfolio-card:hover p { transform: translateY(0); }
+        .portfolio-card-overlay h4 {
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            transform: translateY(20px);
+            transition: 0.4s ease;
+        }
+
+        .portfolio-card-overlay h6 {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            transform: translateY(20px);
+            transition: 0.4s ease 0.1s;
+        }
+
+        .portfolio-card-overlay p {
+            background: #fff;
+            color: var(--accent);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.75rem;
+            transform: translateY(20px);
+            transition: 0.4s ease 0.2s;
+        }
+
+        .portfolio-card:hover h4,
+        .portfolio-card:hover h6,
+        .portfolio-card:hover p {
+            transform: translateY(0);
+        }
 
         /* --- Footer & CTA --- */
-        .contact-section { background: var(--accent); padding: 80px 0; border-radius: 50px 50px 0 0; margin-top: 50px;}
+        .contact-section {
+            background: var(--accent);
+            padding: 80px 0;
+            border-radius: 50px 50px 0 0;
+            margin-top: 50px;
+        }
     </style>
 </head>
 
@@ -128,7 +234,9 @@
     <section class="section" id="portfolio" style="padding-top: 150px;">
         <div class="container text-center">
             <div class="reveal active mb-5">
-                <p style="color: var(--accent); letter-spacing: 5px; font-weight: 800; text-transform: uppercase; font-size: 0.8rem;">Professional Showcase</p>
+                <p
+                    style="color: var(--accent); letter-spacing: 5px; font-weight: 800; text-transform: uppercase; font-size: 0.8rem;">
+                    Professional Showcase</p>
                 <h2 class="section-title">WordPress Architecture</h2>
             </div>
 
@@ -199,7 +307,7 @@
                     </a>
                 </div>
 
-                
+
                 <div class="col-md-6 reveal">
                     <a href="https://tmconstruction.in/" class="portfolio-card tilt-effect">
                         <img src="assets/imgs/tm.png" alt="Ola">
@@ -331,7 +439,7 @@
                         </div>
                     </a>
                 </div>
-                
+
                 <div class="col-md-6 reveal">
                     <a href="https://innovateurban.com/" class="portfolio-card tilt-effect">
                         <img src="assets/imgs/uil.png" alt="KW">
@@ -450,14 +558,18 @@
             <h2 class="font-weight-bold mb-4">Elevate Your Digital Presence</h2>
             <p class="mb-5">Specializing in enterprise architectures and high-end WordPress solutions.</p>
             <div class="row justify-content-center">
-                <div class="col-md-4 mb-3"><a href="tel:+918303383499" class="btn btn-light btn-block rounded-pill py-3 font-weight-bold">+91 8303383499</a></div>
-                <div class="col-md-4 mb-3"><a href="mailto:nakulsejwar02@gmail.com" class="btn btn-light btn-block rounded-pill py-3 font-weight-bold">Email Nakul</a></div>
+                <div class="col-md-4 mb-3"><a href="tel:+918303383499"
+                        class="btn btn-light btn-block rounded-pill py-3 font-weight-bold">+91 8303383499</a></div>
+                <div class="col-md-4 mb-3"><a href="mailto:nakulsejwar02@gmail.com"
+                        class="btn btn-light btn-block rounded-pill py-3 font-weight-bold">Email Nakul</a></div>
             </div>
         </div>
     </section>
 
     <footer class="py-5 text-center">
-        <p class="text-muted small">&copy; <script>document.write(new Date().getFullYear())</script> Nakul Sejwar. Excellence Built-in.</p>
+        <p class="text-muted small">&copy;
+            <script>document.write(new Date().getFullYear())</script> Nakul Sejwar. Excellence Built-in.
+        </p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -467,17 +579,17 @@
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-        let particles = Array.from({length: 60}, () => ({
+        let particles = Array.from({ length: 60 }, () => ({
             x: Math.random() * canvas.width, y: Math.random() * canvas.height,
             vx: Math.random() * 0.4 - 0.2, vy: Math.random() * 0.4 - 0.2, size: Math.random() * 2
         }));
         function animate() {
-            ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle = "#695aa6";
+            ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.fillStyle = "#8b5cf6";
             particles.forEach(p => {
                 p.x += p.vx; p.y += p.vy;
-                if(p.x < 0 || p.x > canvas.width) p.vx *= -1;
-                if(p.y < 0 || p.y > canvas.height) p.vy *= -1;
-                ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
             });
             requestAnimationFrame(animate);
         }
@@ -499,11 +611,10 @@
 
         // --- 3. Intersection Observer ---
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 
 </html>
-
