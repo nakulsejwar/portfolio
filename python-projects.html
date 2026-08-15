@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Nakul">
     <title>Python Projects | Nakul Sejwar</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    
+
     <style>
         :root {
             --bg-dark: #030305;
@@ -34,14 +37,20 @@
         /* --- PARALLAX BACKGROUND --- */
         .premium-bg {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, var(--bg-dark) 70%);
             z-index: -1;
         }
 
         #bg-canvas {
             position: fixed;
-            top: 0; left: 0; z-index: -1; opacity: 0.4;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.4;
         }
 
         /* --- Navigation --- */
@@ -51,9 +60,49 @@
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
         }
-        .navbar-brand { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #fff !important; letter-spacing: 1px; }
-        .nav-link { font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s; }
-        .nav-link:hover { color: var(--accent) !important; }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff !important;
+            letter-spacing: 1px;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: var(--text-muted) !important;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent) !important;
+        }
+
+        .dropdown-menu {
+            background-color: rgba(3, 3, 5, 0.95);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .custom-dropdown-item {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.3s;
+            background: transparent;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .custom-dropdown-item:hover,
+        .custom-dropdown-item:focus {
+            background-color: rgba(139, 92, 246, 0.1);
+            color: var(--accent) !important;
+        }
 
         /* --- Project Grid Layout --- */
         .projects-grid {
@@ -83,8 +132,11 @@
         .blog-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; height: 100%;
-            background: linear-gradient(180deg, rgba(139,92,246,0.05) 0%, transparent 100%);
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(139, 92, 246, 0.05) 0%, transparent 100%);
             opacity: 0;
             transition: opacity 0.5s ease;
             z-index: -1;
@@ -93,7 +145,7 @@
         .blog-card:hover {
             transform: translateY(-8px);
             border-color: var(--glass-border-hover);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 30px rgba(139,92,246,0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(139, 92, 246, 0.1);
         }
 
         .blog-card:hover::before {
@@ -127,8 +179,7 @@
         }
 
         .blog-card-title {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 1.6rem;
             color: #fff;
             margin-bottom: 15px;
@@ -220,22 +271,29 @@
         }
 
         .btn-github:hover {
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
             border-color: #fff;
             transform: translateY(-2px);
             text-decoration: none;
         }
 
         /* --- Animations --- */
-        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 800;
-            margin-bottom: 15px;
-            background: linear-gradient(to right, #fff, #a78bfa);
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -251,14 +309,18 @@
 
         /* Footer & Contact Section */
         .contact-section {
-            background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(105,90,166,0.1));
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(105, 90, 166, 0.1));
             border-top: 1px solid var(--glass-border);
             border-bottom: 1px solid var(--glass-border);
             padding: 80px 0;
             margin-top: 60px;
         }
 
-        footer { border-top: 1px solid var(--glass-border); background: var(--bg-dark); }
+        footer {
+            border-top: 1px solid var(--glass-border);
+            background: var(--bg-dark);
+        }
+
         .social-links a {
             display: inline-flex;
             align-items: center;
@@ -266,10 +328,11 @@
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             transition: 0.3s;
             border: 1px solid transparent;
         }
+
         .social-links a:hover {
             background: rgba(139, 92, 246, 0.2);
             border-color: var(--accent);
@@ -279,11 +342,17 @@
         }
 
         @media (max-width: 768px) {
-            .section-title { font-size: 2.5rem; }
-            .projects-grid { grid-template-columns: 1fr; }
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body data-spy="scroll" data-target=".navbar" data-offset="40">
 
     <div class="premium-bg"></div>
@@ -300,7 +369,17 @@
                     <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html#about">ABOUT</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html#service">SERVICES</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#portfolio">PORTFOLIO</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="portfolioDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PORTFOLIO</a>
+                        <div class="dropdown-menu" aria-labelledby="portfolioDropdown">
+                            <a class="dropdown-item custom-dropdown-item" href="index.html#portfolio">All Projects</a>
+                            <a class="dropdown-item custom-dropdown-item" href="python-projects.html">Software
+                                Projects</a>
+                            <a class="dropdown-item custom-dropdown-item" href="wordpress-projects.html">WordPress
+                                Projects</a>
+                        </div>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="index.html#skills">STACK</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html#experience">EXPERIENCE</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html#contact">CONTACT</a></li>
@@ -311,9 +390,12 @@
 
     <section class="section mt-5" id="project" style="padding-top: 100px; padding-bottom: 40px;">
         <div class="container text-center">
-            <p style="color: var(--accent); letter-spacing: 5px; font-weight: 800; text-transform: uppercase; font-size: 0.8rem;">Master Suite</p>
+            <p
+                style="color: var(--accent); letter-spacing: 5px; font-weight: 800; text-transform: uppercase; font-size: 0.8rem;">
+                Master Suite</p>
             <h2 class="reveal section-title">Selected Projects</h2>
-            <p class="reveal project-count">17 selected projects from my public GitHub portfolio — focused on AI, backend engineering, APIs, and real-world applications.</p>
+            <p class="reveal project-count">17 selected projects from my public GitHub portfolio — focused on AI,
+                backend engineering, APIs, and real-world applications.</p>
 
             <div class="projects-grid text-left">
 
@@ -324,12 +406,17 @@
                             <span class="project-number">Project 01</span>
                         </div>
                         <h5 class="blog-card-title">LumaForge — AI Landing Page Studio</h5>
-                        <p class="blog-card-desc">An AI-powered landing page studio that transforms natural-language prompts into structured, editable landing pages. Includes visual editing, responsive desktop/mobile previews, design-direction controls, AI and stock image options, motion settings, 3D depth modes, and a complete generate → edit → publish workflow.</p>
+                        <p class="blog-card-desc">An AI-powered landing page studio that transforms natural-language
+                            prompts into structured, editable landing pages. Includes visual editing, responsive
+                            desktop/mobile previews, design-direction controls, AI and stock image options, motion
+                            settings, 3D depth modes, and a complete generate → edit → publish workflow.</p>
                         <div class="tech-stack">
-                            <span>AI</span><span>Next.js</span><span>Landing Page Generator</span><span>Visual Editor</span><span>Responsive Design</span><span>SaaS</span>
+                            <span>AI</span><span>Next.js</span><span>Landing Page Generator</span><span>Visual
+                                Editor</span><span>Responsive Design</span><span>SaaS</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://landingpage-kwyp.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-check-live"><i class="ti-world"></i> Live Demo</a>
+                            <a href="https://landingpage-kwyp.vercel.app/" target="_blank" rel="noopener noreferrer"
+                                class="btn btn-check-live"><i class="ti-world"></i> Live Demo</a>
                         </div>
                     </div>
                 </div>
@@ -341,12 +428,19 @@
                             <span class="project-number">Project 02</span>
                         </div>
                         <h5 class="blog-card-title">Zaplyn — Intelligent Commerce Platform</h5>
-                        <p class="blog-card-desc">An intelligent commerce platform for creators, founders, and modern businesses to launch stores, sell physical and digital products, offer services, and accept payments through shareable links. Supports product management, inventory, shipping, variants, digital downloads, service bookings, payments, subscriptions, and multiple shops.</p>
+                        <p class="blog-card-desc">An intelligent commerce platform for creators, founders, and modern
+                            businesses to launch stores, sell physical and digital products, offer services, and accept
+                            payments through shareable links. Supports product management, inventory, shipping,
+                            variants, digital downloads, service bookings, payments, subscriptions, and multiple shops.
+                        </p>
                         <div class="tech-stack">
-                            <span>Django</span><span>Next.js</span><span>AI Agents</span><span>PostgreSQL</span><span>Redis</span><span>Stripe</span><span>AWS</span><span>REST APIs</span><span>E-commerce</span>
+                            <span>Django</span><span>Next.js</span><span>AI
+                                Agents</span><span>PostgreSQL</span><span>Redis</span><span>Stripe</span><span>AWS</span><span>REST
+                                APIs</span><span>E-commerce</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://zaplyn.link/" target="_blank" rel="noopener noreferrer" class="btn btn-check-live"><i class="ti-world"></i> Live Platform</a>
+                            <a href="https://zaplyn.link/" target="_blank" rel="noopener noreferrer"
+                                class="btn btn-check-live"><i class="ti-world"></i> Live Platform</a>
                         </div>
                     </div>
                 </div>
@@ -359,12 +453,16 @@
                             <span class="project-number">Project 03</span>
                         </div>
                         <h5 class="blog-card-title">HEALOSBENCH — LLM Evaluation Platform</h5>
-                        <p class="blog-card-desc">An LLM evaluation platform for structured extraction workflows, built around schema validation, automated evaluation, comparison, and reliable AI testing.</p>
+                        <p class="blog-card-desc">An LLM evaluation platform for structured extraction workflows, built
+                            around schema validation, automated evaluation, comparison, and reliable AI testing.</p>
                         <div class="tech-stack">
-                            <span>TypeScript</span><span>Next.js</span><span>LLM Evaluation</span><span>PostgreSQL</span><span>Turborepo</span>
+                            <span>TypeScript</span><span>Next.js</span><span>LLM
+                                Evaluation</span><span>PostgreSQL</span><span>Turborepo</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/nakulsejwar/test-evals" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                            <a href="https://github.com/nakulsejwar/test-evals" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i>
+                                Repository</a>
                         </div>
                     </div>
                 </div>
@@ -376,12 +474,16 @@
                             <span class="project-number">Project 04</span>
                         </div>
                         <h5 class="blog-card-title">Real-Time Collaborative Workspace</h5>
-                        <p class="blog-card-desc">A production-style collaborative backend supporting workspaces, projects, real-time communication, background jobs, authentication, and API documentation.</p>
+                        <p class="blog-card-desc">A production-style collaborative backend supporting workspaces,
+                            projects, real-time communication, background jobs, authentication, and API documentation.
+                        </p>
                         <div class="tech-stack">
                             <span>Django</span><span>DRF</span><span>WebSockets</span><span>Redis</span><span>Celery</span><span>Docker</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/nakulsejwar/Workspace-Backend" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                            <a href="https://github.com/nakulsejwar/Workspace-Backend" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i>
+                                Repository</a>
                         </div>
                     </div>
                 </div>
@@ -393,12 +495,14 @@
                             <span class="project-number">Project 05</span>
                         </div>
                         <h5 class="blog-card-title">FuelRoute</h5>
-                        <p class="blog-card-desc">A route and fuel-planning application that combines travel routes with fuel-station discovery to help users plan more efficient journeys.</p>
+                        <p class="blog-card-desc">A route and fuel-planning application that combines travel routes with
+                            fuel-station discovery to help users plan more efficient journeys.</p>
                         <div class="tech-stack">
                             <span>Python</span><span>Django</span><span>Maps</span><span>Route Planning</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/nakulsejwar/fuelroute" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                            <a href="https://github.com/nakulsejwar/fuelroute" target="_blank" rel="noopener noreferrer"
+                                class="btn btn-github"><i class="ti-github"></i> Repository</a>
                         </div>
                     </div>
                 </div>
@@ -410,12 +514,15 @@
                             <span class="project-number">Project 06</span>
                         </div>
                         <h5 class="blog-card-title">Language Learning Chatbot</h5>
-                        <p class="blog-card-desc">An AI-powered language learning application with guided conversations, grammar correction, mistake tracking, and learner feedback.</p>
+                        <p class="blog-card-desc">An AI-powered language learning application with guided conversations,
+                            grammar correction, mistake tracking, and learner feedback.</p>
                         <div class="tech-stack">
                             <span>Python</span><span>Django</span><span>Hugging Face</span><span>NLP</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/nakulsejwar/language_bot" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                            <a href="https://github.com/nakulsejwar/language_bot" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i>
+                                Repository</a>
                         </div>
                     </div>
                 </div>
@@ -427,12 +534,15 @@
                             <span class="project-number">Project 07</span>
                         </div>
                         <h5 class="blog-card-title">Details Extraction</h5>
-                        <p class="blog-card-desc">A document-focused extraction application designed to capture structured information from uploaded content.</p>
+                        <p class="blog-card-desc">A document-focused extraction application designed to capture
+                            structured information from uploaded content.</p>
                         <div class="tech-stack">
                             <span>Python</span><span>Document Processing</span><span>Web App</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/nakulsejwar/details-extraction" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                            <a href="https://github.com/nakulsejwar/details-extraction" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i>
+                                Repository</a>
                         </div>
                     </div>
                 </div>
@@ -444,12 +554,15 @@
                             <span class="project-number">Project 08</span>
                         </div>
                         <h5 class="blog-card-title">Logistics Management System</h5>
-                        <p class="blog-card-desc">A logistics-oriented management application for handling operational data and workflows through a Python-based backend.</p>
+                        <p class="blog-card-desc">A logistics-oriented management application for handling operational
+                            data and workflows through a Python-based backend.</p>
                         <div class="tech-stack">
                             <span>Python</span><span>Django</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/nakulsejwar/logistic-system" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                            <a href="https://github.com/nakulsejwar/logistic-system" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i>
+                                Repository</a>
                         </div>
                     </div>
                 </div>
@@ -461,12 +574,15 @@
                             <span class="project-number">Project 09</span>
                         </div>
                         <h5 class="blog-card-title">Progace React App</h5>
-                        <p class="blog-card-desc">A React-based application demonstrating component-driven frontend development and interactive application workflows.</p>
+                        <p class="blog-card-desc">A React-based application demonstrating component-driven frontend
+                            development and interactive application workflows.</p>
                         <div class="tech-stack">
                             <span>React</span><span>TypeScript</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/nakulsejwar/progace-react-app" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                            <a href="https://github.com/nakulsejwar/progace-react-app" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i>
+                                Repository</a>
                         </div>
                     </div>
                 </div>
@@ -478,12 +594,15 @@
                             <span class="project-number">Project 10</span>
                         </div>
                         <h5 class="blog-card-title">Employee Management System</h5>
-                        <p class="blog-card-desc">A web application for managing employee information and common workforce-management operations.</p>
+                        <p class="blog-card-desc">A web application for managing employee information and common
+                            workforce-management operations.</p>
                         <div class="tech-stack">
                             <span>JavaScript</span><span>Web App</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/nakulsejwar/Employee_Management_System" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                            <a href="https://github.com/nakulsejwar/Employee_Management_System" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i>
+                                Repository</a>
                         </div>
                     </div>
                 </div>
@@ -495,12 +614,14 @@
                             <span class="project-number">Project 11</span>
                         </div>
                         <h5 class="blog-card-title">News Application</h5>
-                        <p class="blog-card-desc">A news-focused application for consuming and presenting current news content through a clean application interface.</p>
+                        <p class="blog-card-desc">A news-focused application for consuming and presenting current news
+                            content through a clean application interface.</p>
                         <div class="tech-stack">
                             <span>Python</span><span>Web App</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/nakulsejwar/news-app" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                            <a href="https://github.com/nakulsejwar/news-app" target="_blank" rel="noopener noreferrer"
+                                class="btn btn-github"><i class="ti-github"></i> Repository</a>
                         </div>
                     </div>
                 </div>
@@ -512,12 +633,14 @@
                             <span class="project-number">Project 12</span>
                         </div>
                         <h5 class="blog-card-title">News API</h5>
-                        <p class="blog-card-desc">A backend/API project focused on serving news-related data for application consumption.</p>
+                        <p class="blog-card-desc">A backend/API project focused on serving news-related data for
+                            application consumption.</p>
                         <div class="tech-stack">
                             <span>Python</span><span>API Development</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/nakulsejwar/news-api" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                            <a href="https://github.com/nakulsejwar/news-api" target="_blank" rel="noopener noreferrer"
+                                class="btn btn-github"><i class="ti-github"></i> Repository</a>
                         </div>
                     </div>
                 </div>
@@ -529,12 +652,15 @@
                             <span class="project-number">Project 13</span>
                         </div>
                         <h5 class="blog-card-title">DCC Plugin</h5>
-                        <p class="blog-card-desc">A Python plugin project demonstrating extensible application functionality through a dedicated plugin architecture.</p>
+                        <p class="blog-card-desc">A Python plugin project demonstrating extensible application
+                            functionality through a dedicated plugin architecture.</p>
                         <div class="tech-stack">
                             <span>Python</span><span>Plugin Development</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/nakulsejwar/dcc-plugin" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                            <a href="https://github.com/nakulsejwar/dcc-plugin" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i>
+                                Repository</a>
                         </div>
                     </div>
                 </div>
@@ -546,12 +672,15 @@
                             <span class="project-number">Project 14</span>
                         </div>
                         <h5 class="blog-card-title">Library Management API</h5>
-                        <p class="blog-card-desc">A backend API for library operations, with asynchronous processing for background tasks and report generation.</p>
+                        <p class="blog-card-desc">A backend API for library operations, with asynchronous processing for
+                            background tasks and report generation.</p>
                         <div class="tech-stack">
                             <span>Django</span><span>DRF</span><span>Celery</span><span>Redis</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/nakulsejwar/library-management-api" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                            <a href="https://github.com/nakulsejwar/library-management-api" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i>
+                                Repository</a>
                         </div>
                     </div>
                 </div>
@@ -563,12 +692,15 @@
                             <span class="project-number">Project 15</span>
                         </div>
                         <h5 class="blog-card-title">Job Portal System</h5>
-                        <p class="blog-card-desc">A recruitment platform supporting job postings, resume submissions, applications, profiles, recommendations, authentication, and role-based access.</p>
+                        <p class="blog-card-desc">A recruitment platform supporting job postings, resume submissions,
+                            applications, profiles, recommendations, authentication, and role-based access.</p>
                         <div class="tech-stack">
                             <span>Django</span><span>Authentication</span><span>RBAC</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/nakulsejwar/Job-Portal" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                            <a href="https://github.com/nakulsejwar/Job-Portal" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i>
+                                Repository</a>
                         </div>
                     </div>
                 </div>
@@ -580,12 +712,15 @@
                             <span class="project-number">Project 16</span>
                         </div>
                         <h5 class="blog-card-title">Hospital Management System</h5>
-                        <p class="blog-card-desc">A hospital-management application covering patient management, appointments, medical records, authentication, roles, and validation.</p>
+                        <p class="blog-card-desc">A hospital-management application covering patient management,
+                            appointments, medical records, authentication, roles, and validation.</p>
                         <div class="tech-stack">
                             <span>Django</span><span>Authentication</span><span>Role-Based Access</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/nakulsejwar/HMS-system" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                            <a href="https://github.com/nakulsejwar/HMS-system" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i>
+                                Repository</a>
                         </div>
                     </div>
                 </div>
@@ -597,13 +732,17 @@
                             <span class="project-number">Project 17</span>
                         </div>
                         <h5 class="blog-card-title">Digital Realm</h5>
-                        <p class="blog-card-desc">A blogging community application where users can discover and share ideas, with social sign-in and OTP-based account recovery.</p>
+                        <p class="blog-card-desc">A blogging community application where users can discover and share
+                            ideas, with social sign-in and OTP-based account recovery.</p>
                         <div class="tech-stack">
                             <span>Django</span><span>Google/Meta APIs</span><span>OTP Auth</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://digital-realm.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-check-live"><i class="ti-world"></i> Live Demo</a>
-                            <a href="https://github.com/nakulsejwar/Digital-Realm" target="_blank" rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i> Repository</a>
+                            <a href="https://digital-realm.vercel.app/" target="_blank" rel="noopener noreferrer"
+                                class="btn btn-check-live"><i class="ti-world"></i> Live Demo</a>
+                            <a href="https://github.com/nakulsejwar/Digital-Realm" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-github"><i class="ti-github"></i>
+                                Repository</a>
                         </div>
                     </div>
                 </div>
@@ -612,21 +751,30 @@
         </div>
     </section>
 
-    <section class="contact-section text-center">
-        <div class="container">
-            <h3 class="font-family-playfair font-weight-bold" style="color: #fff; font-size: 2.5rem; margin-bottom: 20px;">Interested in these architectures?</h3>
-            <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px;">Always feel free to Contact & Hire me for your next big project.</p>
-            <a href="index.html#contact" class="btn btn-check-live px-5 py-3" style="font-size: 1rem; border-radius: 50px;">Let's Connect</a>
+    <section class="contact-section text-center text-white" id="contact">
+        <div class="container reveal">
+            <h2 class="font-weight-bold mb-4">Elevate Your Digital Presence</h2>
+            <p class="mb-5">Specializing in enterprise architectures and high-end WordPress solutions.</p>
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-3"><a href="tel:+918303383499"
+                        class="btn btn-light btn-block rounded-pill py-3 font-weight-bold">+91 8303383499</a></div>
+                <div class="col-md-4 mb-3"><a href="mailto:nakulsejwar02@gmail.com"
+                        class="btn btn-light btn-block rounded-pill py-3 font-weight-bold">Email Nakul</a></div>
+            </div>
         </div>
     </section>
 
     <footer class="py-5">
         <div class="container text-center">
             <div class="social-links mb-4">
-                <a href="https://www.linkedin.com/in/nakulsejwar/" class="mx-3 text-white" target="_blank" rel="noopener noreferrer"><i class="ti-linkedin"></i></a>
-                <a href="https://github.com/nakulsejwar/" class="mx-3 text-white" target="_blank" rel="noopener noreferrer"><i class="ti-github"></i></a>
+                <a href="https://www.linkedin.com/in/nakulsejwar/" class="mx-3 text-white" target="_blank"
+                    rel="noopener noreferrer"><i class="ti-linkedin"></i></a>
+                <a href="https://github.com/nakulsejwar/" class="mx-3 text-white" target="_blank"
+                    rel="noopener noreferrer"><i class="ti-github"></i></a>
             </div>
-            <p class="mb-0 text-muted small">&copy; <script>document.write(new Date().getFullYear())</script> Nakul Sejwar. Designed meticulously.</p>
+            <p class="mb-0 text-muted small">&copy;
+                <script>document.write(new Date().getFullYear())</script> Nakul Sejwar. Designed meticulously.
+            </p>
         </div>
     </footer>
 
@@ -651,13 +799,13 @@
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
-                
+
                 // Calculate mouse position relative to center of card
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
-                
+
                 // Gentle tilt rotation
-                const rotationX = -y / 50; 
+                const rotationX = -y / 50;
                 const rotationY = x / 50;
 
                 card.style.transform = `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg) translateY(-8px)`;
@@ -674,14 +822,14 @@
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        let pArray = Array.from({length: 40}, () => ({
+        let pArray = Array.from({ length: 40 }, () => ({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
             size: Math.random() * 2,
             vX: Math.random() * 0.3 - 0.15,
             vY: Math.random() * 0.3 - 0.15
         }));
-        
+
         // Handle window resize for particles
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
@@ -689,17 +837,18 @@
         });
 
         function draw() {
-            ctx.clearRect(0,0,canvas.width,canvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "#8b5cf6"; // Match accent color
             pArray.forEach(p => {
                 p.x += p.vX; p.y += p.vY;
-                if(p.x < 0 || p.x > canvas.width) p.vX *= -1;
-                if(p.y < 0 || p.y > canvas.height) p.vY *= -1;
-                ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();
+                if (p.x < 0 || p.x > canvas.width) p.vX *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vY *= -1;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
             });
             requestAnimationFrame(draw);
         }
         draw();
     </script>
 </body>
+
 </html>

@@ -87,6 +87,10 @@
             letter-spacing: 1px;
             color: var(--text-muted) !important;
         }
+        .nav-link:hover { color: var(--accent) !important; }
+        .dropdown-menu { background-color: rgba(3, 3, 5, 0.95); border: 1px solid var(--glass-border); backdrop-filter: blur(10px); }
+        .custom-dropdown-item { color: var(--text-muted); font-size: 0.85rem; font-weight: 600; transition: 0.3s; background: transparent; letter-spacing: 1px; text-transform: uppercase; }
+        .custom-dropdown-item:hover, .custom-dropdown-item:focus { background-color: rgba(139, 92, 246, 0.1); color: var(--accent) !important; }
 
         /* --- Header Section --- */
         .header-content {
@@ -222,7 +226,14 @@
                     <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html#about">ABOUT</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html#service">SERVICES</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#portfolio">PORTFOLIO</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="portfolioDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PORTFOLIO</a>
+                        <div class="dropdown-menu" aria-labelledby="portfolioDropdown">
+                            <a class="dropdown-item custom-dropdown-item" href="index.html#portfolio">All Projects</a>
+                            <a class="dropdown-item custom-dropdown-item" href="python-projects.html">Software Projects</a>
+                            <a class="dropdown-item custom-dropdown-item" href="wordpress-projects.html">WordPress Projects</a>
+                        </div>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="index.html#skills">STACK</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html#experience">EXPERIENCE</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html#contact">CONTACT</a></li>

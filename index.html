@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Nakul">
     <title>Nakul Sejwar | Portfolio</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
     <style>
         :root {
             --bg-dark: #030305;
@@ -22,6 +25,7 @@
             --text-main: #ffffff;
             --text-muted: #a0a0a0;
         }
+
         /* Target the image inside the link when the link is hovered */
         .wp-hover:hover .wp-icon {
             /* This filter approximates your purple shade #8b5cf6 */
@@ -47,15 +51,20 @@
 
         #bg-canvas {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -2;
             pointer-events: none;
         }
 
         .premium-bg-overlay {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: radial-gradient(circle at 50% 50%, transparent 0%, var(--bg-dark) 100%);
             z-index: -1;
             pointer-events: none;
@@ -69,9 +78,47 @@
             border-bottom: 1px solid var(--glass-border);
             transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .navbar-brand { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; }
-        .nav-link { font-weight: 600; font-size: 0.9rem; letter-spacing: 1px; color: var(--text-muted) !important; transition: 0.3s; }
-        .nav-link:hover { color: var(--accent) !important; transform: translateY(-2px); }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            color: var(--text-muted) !important;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent) !important;
+            transform: translateY(-2px);
+        }
+
+        .dropdown-menu {
+            background-color: rgba(5, 5, 5, 0.95);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .custom-dropdown-item {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.3s;
+            background: transparent;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .custom-dropdown-item:hover,
+        .custom-dropdown-item:focus {
+            background-color: rgba(139, 92, 246, 0.1);
+            color: var(--accent) !important;
+        }
 
         /* --- Hero Section --- */
         .header {
@@ -82,13 +129,32 @@
             text-align: center;
             perspective: 1000px;
         }
+
         .header-content {
             transform-style: preserve-3d;
             transition: transform 0.1s ease-out;
         }
-        .header-title { font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
-        .header-title span { font-family: 'Playfair Display', serif; font-style: italic; color: var(--accent); }
-        .header-subtitle { color: var(--text-muted); letter-spacing: 6px; font-weight: 300; margin-bottom: 40px; text-transform: uppercase; }
+
+        .header-title {
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .header-title span {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .header-subtitle {
+            color: var(--text-muted);
+            letter-spacing: 6px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
 
         /* --- Buttons --- */
         .btn-premium {
@@ -104,11 +170,27 @@
             text-transform: uppercase;
             font-size: 0.8rem;
         }
-        .btn-premium:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 15px 40px rgba(139, 92, 246, 0.6); }
+
+        .btn-premium:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.6);
+        }
 
         /* --- Section Styling --- */
-        .section { padding: 120px 0; position: relative; }
-        .section-subtitle { color: var(--accent); text-transform: uppercase; letter-spacing: 6px; font-weight: 800; font-size: 0.8rem; margin-bottom: 10px; display: block;}
+        .section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-subtitle {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            display: block;
+        }
 
         /* --- Card Aesthetics & 3D Tilt --- */
         .premium-card {
@@ -122,10 +204,11 @@
             transform-style: preserve-3d;
             position: relative;
         }
+
         .premium-card:hover {
             background: rgba(139, 92, 246, 0.05);
             border-color: var(--accent);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         }
 
         /* --- Skills Stack --- */
@@ -141,14 +224,23 @@
             transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             animation: floatSkill 4s ease-in-out infinite;
         }
+
         .skill-tag:hover {
             background: linear-gradient(135deg, var(--accent), var(--secondary));
             transform: scale(1.1) rotate(3deg);
             border-color: var(--text-main);
         }
+
         @keyframes floatSkill {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
         }
 
         /* --- Portfolio --- */
@@ -160,8 +252,19 @@
             margin-bottom: 30px;
             background: var(--glass);
         }
-        .portfolio-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
-        .portfolio-card:hover img { transform: scale(1.1) rotate(1deg); filter: blur(3px) brightness(0.4); }
+
+        .portfolio-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.8s;
+        }
+
+        .portfolio-card:hover img {
+            transform: scale(1.1) rotate(1deg);
+            filter: blur(3px) brightness(0.4);
+        }
+
         .portfolio-card-overlay {
             position: absolute;
             inset: 0;
@@ -173,7 +276,10 @@
             transition: 0.5s;
             padding: 20px;
         }
-        .portfolio-card:hover .portfolio-card-overlay { opacity: 1; }
+
+        .portfolio-card:hover .portfolio-card-overlay {
+            opacity: 1;
+        }
 
         /* --- Experience Logic --- */
         .experience-card-img {
@@ -187,8 +293,16 @@
         }
 
         /* --- Reveal Animations --- */
-        .reveal { opacity: 0; transform: translateY(60px); transition: 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* --- Contact Section --- */
         .contact-pill {
@@ -202,7 +316,14 @@
             display: block;
             margin-bottom: 20px;
         }
-        .contact-pill:hover { background: linear-gradient(135deg, var(--accent), var(--secondary)); color: #fff; text-decoration: none; transform: scale(1.05); }
+
+        .contact-pill:hover {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            color: #fff;
+            text-decoration: none;
+            transform: scale(1.05);
+        }
+
         /* Brings color back on hover */
         .parallax-element:hover .about-img-premium {
             filter: grayscale(0%) !important;
@@ -220,13 +341,19 @@
         .parallax-element {
             perspective: 1000px;
         }
+
         /* Container Perspective */
-        #service, #portfolio, #skills, #experience {
+        #service,
+        #portfolio,
+        #skills,
+        #experience {
             perspective: 1500px;
         }
 
         /* Base style for all cards to support 3D */
-        .premium-card, .portfolio-card, .skill-tag {
+        .premium-card,
+        .portfolio-card,
+        .skill-tag {
             transition: transform 0.1s ease-out, box-shadow 0.3s ease, filter 0.5s ease;
             will-change: transform;
         }
@@ -243,13 +370,26 @@
         }
 
         /* Skills Floating Animation - unique speeds for parallax feel */
-        .skill-tag:nth-child(odd) { animation: floatSkill 5s ease-in-out infinite; }
-        .skill-tag:nth-child(even) { animation: floatSkill 7s ease-in-out infinite; }
+        .skill-tag:nth-child(odd) {
+            animation: floatSkill 5s ease-in-out infinite;
+        }
+
+        .skill-tag:nth-child(even) {
+            animation: floatSkill 7s ease-in-out infinite;
+        }
 
         @keyframes floatSkill {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(2deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(2deg);
+            }
         }
+
         /* Portfolio Card Container */
         .portfolio-card {
             position: relative;
@@ -262,12 +402,14 @@
         .portfolio-card-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(139, 92, 246, 0.85); /* Your purple shade with transparency */
+            background: rgba(139, 92, 246, 0.85);
+            /* Your purple shade with transparency */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            opacity: 0; /* Hidden */
+            opacity: 0;
+            /* Hidden */
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             padding: 20px;
             z-index: 2;
@@ -309,6 +451,7 @@
             filter: grayscale(0%);
             transform: scale(1.1);
         }
+
         /* Custom Purple Small Button */
         .btn-premium-sm {
             padding: 8px 20px;
@@ -348,7 +491,17 @@
                     <li class="nav-item"><a class="nav-link" href="#home">HOME</a></li>
                     <li class="nav-item"><a class="nav-link" href="#about">ABOUT</a></li>
                     <li class="nav-item"><a class="nav-link" href="#service">SERVICES</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">PORTFOLIO</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="portfolioDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PORTFOLIO</a>
+                        <div class="dropdown-menu" aria-labelledby="portfolioDropdown">
+                            <a class="dropdown-item custom-dropdown-item" href="#portfolio">All Projects</a>
+                            <a class="dropdown-item custom-dropdown-item" href="python-projects.html">Software
+                                Projects</a>
+                            <a class="dropdown-item custom-dropdown-item" href="wordpress-projects.html">WordPress
+                                Projects</a>
+                        </div>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="#skills">STACK</a></li>
                     <li class="nav-item"><a class="nav-link" href="#experience">EXPERIENCE</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">CONTACT</a></li>
@@ -361,7 +514,8 @@
         <div class="header-content container">
             <div class="reveal active">
                 <h1 class="header-title">
-                    <span class="d-block" style="font-size: 0.3em; letter-spacing: 15px; text-transform: uppercase;">Creative Mind</span>
+                    <span class="d-block"
+                        style="font-size: 0.3em; letter-spacing: 15px; text-transform: uppercase;">Creative Mind</span>
                     I am Nakul <span>Sejwar</span>
                 </h1>
                 <p class="header-subtitle">Python / Django Architect & Frontend Developer</p>
@@ -377,27 +531,36 @@
             <div class="row align-items-center reveal">
                 <div class="col-md-5 mb-5 mb-md-0">
                     <div class="parallax-element" style="position: relative; padding: 20px;">
-                        <div class="about-border-glow" style="position: absolute; inset: 0; border: 2px solid var(--accent); border-radius: 40px; transform: rotate(-5deg); transition: 0.5s;"></div>
-                        
-                        <img src="assets/imgs/man.png" 
-                            class="img-fluid about-img-premium hover-tilt" 
-                            alt="Nakul Sejwar" 
+                        <div class="about-border-glow"
+                            style="position: absolute; inset: 0; border: 2px solid var(--accent); border-radius: 40px; transform: rotate(-5deg); transition: 0.5s;">
+                        </div>
+
+                        <img src="assets/imgs/man.png" class="img-fluid about-img-premium hover-tilt" alt="Nakul Sejwar"
                             style="border-radius: 40px; background: var(--glass); position: relative; z-index: 1; filter: grayscale(100%); transition: filter 0.6s ease, transform 0.1s ease-out; cursor: pointer;">
                     </div>
                 </div>
                 <div class="col-md-7 pl-lg-5">
                     <span class="section-subtitle">The Persona</span>
-                    <h2 class="mb-4" style="font-weight: 800; font-size: 2.5rem;">Engineering Solutions with Precision</h2>
+                    <h2 class="mb-4" style="font-weight: 800; font-size: 2.5rem;">Engineering Solutions with Precision
+                    </h2>
                     <p class="text-muted mb-4" style="line-height: 1.8;">
-                        Hello, my name is <strong>Nakul Sejwar</strong>. I am currently working as a Full Stack Developer at General Enterprises, specializing in Django-based backend systems, AI integrations, and WordPress development, while pursuing an undergraduate degree in Computer Science and Engineering (CSE) from BBAU Lucknow.
+                        Hello, my name is <strong>Nakul Sejwar</strong>. I am currently working as a Full Stack
+                        Developer at General Enterprises, specializing in Django-based backend systems, AI integrations,
+                        and WordPress development, while pursuing an undergraduate degree in Computer Science and
+                        Engineering (CSE) from BBAU Lucknow.
                     </p>
                     <ul class="text-muted list-unstyled mb-4" style="line-height: 2.2;">
-                        <li><i class="ti-check mr-2" style="color: var(--accent);"></i> Expert in realistic planning and virtual entertainment management.</li>
-                        <li><i class="ti-check mr-2" style="color: var(--accent);"></i> Detail-oriented CS student with rapid digital learning capabilities.</li>
-                        <li><i class="ti-check mr-2" style="color: var(--accent);"></i> Focused on SEO-driven, high-productivity coding environments.</li>
-                        <li><i class="ti-check mr-2" style="color: var(--accent);"></i> Committed to dynamic improvement and efficiency in every project.</li>
+                        <li><i class="ti-check mr-2" style="color: var(--accent);"></i> Expert in realistic planning and
+                            virtual entertainment management.</li>
+                        <li><i class="ti-check mr-2" style="color: var(--accent);"></i> Detail-oriented CS student with
+                            rapid digital learning capabilities.</li>
+                        <li><i class="ti-check mr-2" style="color: var(--accent);"></i> Focused on SEO-driven,
+                            high-productivity coding environments.</li>
+                        <li><i class="ti-check mr-2" style="color: var(--accent);"></i> Committed to dynamic improvement
+                            and efficiency in every project.</li>
                     </ul>
-                    <a href="https://drive.google.com/file/d/1Jrh1qIOYwb_SbWXU8_oIkuqwWPKTln1h/view?usp=sharing" class="btn-premium">Download Full CV</a>
+                    <a href="https://drive.google.com/file/d/1Jrh1qIOYwb_SbWXU8_oIkuqwWPKTln1h/view?usp=sharing"
+                        class="btn-premium">Download Full CV</a>
                 </div>
             </div>
         </div>
@@ -447,7 +610,7 @@
                     <a href="python-projects.html" class="portfolio-card d-block">
                         <img src="assets/imgs/Python.png" alt="Python Projects">
                         <div class="portfolio-card-overlay">
-                            <h4 class="font-weight-bold">Python Projects</h4>
+                            <h4 class="font-weight-bold">Full Stack Projects</h4>
                             <p>Click to View Suite</p>
                         </div>
                     </a>
@@ -480,11 +643,12 @@
                 <span class="section-subtitle">The Ecosystem</span>
                 <h2 style="font-weight: 800; font-size: 2.5rem;">Commanded Technologies</h2>
             </div>
-            
+
             <div class="premium-card reveal p-5">
                 <div class="row">
                     <div class="col-md-4 mb-5 mb-md-0">
-                        <h5 class="font-weight-bold mb-4" style="letter-spacing: 2px; color: var(--accent);">LANGUAGES</h5>
+                        <h5 class="font-weight-bold mb-4" style="letter-spacing: 2px; color: var(--accent);">LANGUAGES
+                        </h5>
                         <div class="skill-tag" style="animation-delay: 0.1s;">Python</div>
                         <div class="skill-tag" style="animation-delay: 0.3s;">SQL / MySQL</div>
                         <div class="skill-tag" style="animation-delay: 0.5s;">HTML5</div>
@@ -493,7 +657,8 @@
                     </div>
 
                     <div class="col-md-4 mb-5 mb-md-0">
-                        <h5 class="font-weight-bold mb-4" style="letter-spacing: 2px; color: var(--accent);">FRAMEWORKS</h5>
+                        <h5 class="font-weight-bold mb-4" style="letter-spacing: 2px; color: var(--accent);">FRAMEWORKS
+                        </h5>
                         <div class="skill-tag" style="animation-delay: 0.2s;">Django</div>
                         <div class="skill-tag" style="animation-delay: 0.4s;">Flask</div>
                         <div class="skill-tag" style="animation-delay: 0.1s;">React.js</div>
@@ -502,7 +667,8 @@
                     </div>
 
                     <div class="col-md-4">
-                        <h5 class="font-weight-bold mb-4" style="letter-spacing: 2px; color: var(--accent);">TOOLING</h5>
+                        <h5 class="font-weight-bold mb-4" style="letter-spacing: 2px; color: var(--accent);">TOOLING
+                        </h5>
                         <div class="skill-tag" style="animation-delay: 0.6s;">Git / GitHub</div>
                         <div class="skill-tag" style="animation-delay: 0.2s;">VS Code</div>
                         <div class="skill-tag" style="animation-delay: 0.4s;">Figma</div>
@@ -531,11 +697,16 @@
                             </div>
                         </div>
                         <p class="text-muted small mb-4" style="line-height: 1.8;">
-                            Developed a dynamic blogging web application, utilizing frontend and backend technologies. Optimized database management which led to a <strong>41% improvement</strong> in application response time. Awarded a Letter of Recommendation as the only student among 100+ participants.
+                            Developed a dynamic blogging web application, utilizing frontend and backend technologies.
+                            Optimized database management which led to a <strong>41% improvement</strong> in application
+                            response time. Awarded a Letter of Recommendation as the only student among 100+
+                            participants.
                         </p>
                         <div class="d-flex flex-wrap">
-                            <a href="https://drive.google.com/file/d/1mclJQD7f81kzIOt3uN5Sgd8E9_ZpstdL/view?usp=sharing" class="btn btn-premium-sm mr-2 mb-2">View Certificate</a>
-                            <a href="https://drive.google.com/file/d/1_BmyCr01pKGEwIzg_A3drso9pyll6M1B/view?usp=sharing" class="btn btn-premium-sm mb-2">Recommendation Letter</a>
+                            <a href="https://drive.google.com/file/d/1mclJQD7f81kzIOt3uN5Sgd8E9_ZpstdL/view?usp=sharing"
+                                class="btn btn-premium-sm mr-2 mb-2">View Certificate</a>
+                            <a href="https://drive.google.com/file/d/1_BmyCr01pKGEwIzg_A3drso9pyll6M1B/view?usp=sharing"
+                                class="btn btn-premium-sm mb-2">Recommendation Letter</a>
                         </div>
                     </div>
                 </div>
@@ -550,9 +721,13 @@
                             </div>
                         </div>
                         <p class="text-muted small mb-4" style="line-height: 1.8;">
-                            Contributed to the design and development of responsive websites ensuring cross-browser compatibility. Worked with CMS platforms like WordPress, customizing themes and plugins to meet client specifications. Earned an internship certificate for hands-on development experience.
+                            Contributed to the design and development of responsive websites ensuring cross-browser
+                            compatibility. Worked with CMS platforms like WordPress, customizing themes and plugins to
+                            meet client specifications. Earned an internship certificate for hands-on development
+                            experience.
                         </p>
-                        <a href="https://drive.google.com/file/d/11rWwCjID4jo7oCbREOb4mnihu0a6t4lC/view?usp=sharing" class="btn btn-premium-sm">View Certificate</a>
+                        <a href="https://drive.google.com/file/d/11rWwCjID4jo7oCbREOb4mnihu0a6t4lC/view?usp=sharing"
+                            class="btn btn-premium-sm">View Certificate</a>
                     </div>
                 </div>
 
@@ -566,7 +741,9 @@
                             </div>
                         </div>
                         <p class="text-muted small mb-4" style="line-height: 1.8;">
-                            Working as an independent Full Stack Developer, delivering scalable web applications using <strong>Django, REST APIs, and AI integrations</strong>. Built multiple client projects including dashboards, automation tools, and WordPress-based websites.
+                            Working as an independent Full Stack Developer, delivering scalable web applications using
+                            <strong>Django, REST APIs, and AI integrations</strong>. Built multiple client projects
+                            including dashboards, automation tools, and WordPress-based websites.
                         </p>
                     </div>
                 </div>
@@ -581,7 +758,9 @@
                             </div>
                         </div>
                         <p class="text-muted small mb-4" style="line-height: 1.8;">
-                            Currently working as a Full Stack Developer, building <strong>Django-based backend systems</strong> with advanced <strong>AI-driven features</strong> including automation workflows and intelligent APIs.
+                            Currently working as a Full Stack Developer, building <strong>Django-based backend
+                                systems</strong> with advanced <strong>AI-driven features</strong> including automation
+                            workflows and intelligent APIs.
                         </p>
                     </div>
                 </div>
@@ -596,7 +775,8 @@
                 <h2 class="mb-5" style="font-weight: 800; font-size: 3rem;">Let's Build the Future</h2>
                 <div class="row justify-content-center">
                     <div class="col-md-4"><a href="tel:+918303383499" class="contact-pill">+91 8303383499</a></div>
-                    <div class="col-md-5"><a href="mailto:nakulsejwar02@gmail.com" class="contact-pill">nakulsejwar02@gmail.com</a></div>
+                    <div class="col-md-5"><a href="mailto:nakulsejwar02@gmail.com"
+                            class="contact-pill">nakulsejwar02@gmail.com</a></div>
                     <div class="col-md-3"><a href="#" class="contact-pill">Bhadohi, IN</a></div>
                 </div>
             </div>
@@ -605,13 +785,17 @@
 
     <footer class="py-5" style="border-top: 1px solid var(--glass-border);">
         <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
-            <p class="mb-0 text-muted small">&copy; <script>document.write(new Date().getFullYear())</script> Nakul Sejwar. All Rights Reserved.</p>
+            <p class="mb-0 text-muted small">&copy;
+                <script>document.write(new Date().getFullYear())</script> Nakul Sejwar. All Rights Reserved.
+            </p>
             <div class="social-links mt-3 mt-md-0">
-                <a href="https://www.linkedin.com/in/nakulsejwar/" class="nav-link d-inline mx-2"><i class="ti-linkedin"></i></a>
+                <a href="https://www.linkedin.com/in/nakulsejwar/" class="nav-link d-inline mx-2"><i
+                        class="ti-linkedin"></i></a>
                 <a href="https://github.com/nakulsejwar/" class="nav-link d-inline mx-2"><i class="ti-github"></i></a>
                 <a href="https://wa.me/918303383499" class="nav-link d-inline mx-2 wp-hover">
-                    <img src="assets/imgs/whatsapp.svg" width="20" class="wp-icon" style="filter: brightness(0) invert(1); transition: 0.3s;">
-                </a>            
+                    <img src="assets/imgs/whatsapp.svg" width="20" class="wp-icon"
+                        style="filter: brightness(0) invert(1); transition: 0.3s;">
+                </a>
             </div>
         </div>
     </footer>
@@ -668,7 +852,7 @@
             const x = (window.innerWidth / 2 - e.pageX) / 50;
             const y = (window.innerHeight / 2 - e.pageY) / 50;
             const content = document.querySelector('.header-content');
-            if(content) content.style.transform = `translate(${x}px, ${y}px)`;
+            if (content) content.style.transform = `translate(${x}px, ${y}px)`;
         });
 
         // --- 3. 3D TILT EFFECT ---
@@ -688,7 +872,7 @@
         // --- 4. SCROLL REVEAL OBSERVER ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if(entry.isIntersecting) {
+                if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                 }
             });
@@ -707,13 +891,13 @@
         if (aboutContainer && aboutImg) {
             aboutContainer.addEventListener('mousemove', (e) => {
                 const rect = aboutContainer.getBoundingClientRect();
-                
+
                 // Calculate mouse position from -1 to 1
                 const x = (e.clientX - rect.left) / rect.width - 0.5;
                 const y = (e.clientY - rect.top) / rect.height - 0.5;
 
                 // Multiply by intensity (e.g., 20deg tilt)
-                const tiltX = y * -20; 
+                const tiltX = y * -20;
                 const tiltY = x * 20;
 
                 aboutImg.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.05)`;
@@ -723,7 +907,7 @@
                 // Smoothly reset position
                 aboutImg.style.transition = "all 0.6s ease";
                 aboutImg.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
-                
+
                 // Remove the transition delay after it finishes so movement stays snappy
                 setTimeout(() => {
                     aboutImg.style.transition = "filter 0.6s ease, transform 0.1s ease-out";
@@ -731,35 +915,36 @@
             });
         }
         // Select all elements that should have the 3D hover effect
-        $(document).ready(function() {
-        const tiltElements = document.querySelectorAll('.tilt-effect, .portfolio-card, .premium-card');
+        $(document).ready(function () {
+            const tiltElements = document.querySelectorAll('.tilt-effect, .portfolio-card, .premium-card');
 
-        tiltElements.forEach(el => {
-            el.addEventListener('mousemove', (e) => {
-                const rect = el.getBoundingClientRect();
-                const x = e.clientX - rect.left; 
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = (y - centerY) / 15; 
-                const rotateY = (centerX - x) / 15;
+            tiltElements.forEach(el => {
+                el.addEventListener('mousemove', (e) => {
+                    const rect = el.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
 
-                // Only rotate the card, don't touch the opacity (CSS handles that now)
-                el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
-            });
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
 
-            el.addEventListener('mouseleave', () => {
-                el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)`;
-                el.style.transition = "transform 0.5s ease";
-                
-                setTimeout(() => {
-                    el.style.transition = "transform 0.1s ease-out";
-                }, 500);
+                    const rotateX = (y - centerY) / 15;
+                    const rotateY = (centerX - x) / 15;
+
+                    // Only rotate the card, don't touch the opacity (CSS handles that now)
+                    el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
+                });
+
+                el.addEventListener('mouseleave', () => {
+                    el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)`;
+                    el.style.transition = "transform 0.5s ease";
+
+                    setTimeout(() => {
+                        el.style.transition = "transform 0.1s ease-out";
+                    }, 500);
+                });
             });
         });
-    });
     </script>
 </body>
+
 </html>
